@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lok Mob · Aluguel de motos e carros em Fortaleza e Sobral</title>
+  <meta name="description" content="Aluguel de motos e carros em Fortaleza, Região Metropolitana e Sobral. Planos Diária, App, Flex e Conquiste. Manutenção, documentação e seguro inclusos.">
+  <meta name="theme-color" content="#181818">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Lok Mob · Precisa de moto ou carro? A gente providencia.">
+  <meta property="og:description" content="Planos Diária, App, Flex e Conquiste em Fortaleza, RMF e Sobral. Manutenção, documentação e seguro já inclusos.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+
+  <link rel="icon" type="image/png" href="assets/img/logo-on-light.png">
+
+  <link rel="preload" href="assets/fonts/oswald-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/img/frota-carro-moto.jpg">
+
+  <script>
+    /* Esconde os blocos animados só quando há movimento; se o JS falhar, tudo reaparece em 4s */
+    (function (d) {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      d.classList.add('lm-js');
+      setTimeout(function () { if (!d.classList.contains('lm-ready')) d.classList.remove('lm-js'); }, 4000);
+    })(document.documentElement);
+  </script>
+
+  <link rel="stylesheet" href="assets/vendor/lenis.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Sprite de ícones (traço 2px, cantos arredondados) -->
+  <svg class="lm-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-moto" viewBox="0 0 24 24"><circle cx="5" cy="16.5" r="3.5"/><circle cx="19" cy="16.5" r="3.5"/><path d="M5 16.5h5.5l3-5H17l2 5"/><path d="M8.5 11.5h5"/><path d="M14.5 6.5H17l1.2 5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10"/><path d="m12 3 9 5H3z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-refund" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 8v8M9.5 10.5c0-1 1.1-1.5 2.5-1.5s2.5.6 2.5 1.6c0 2.4-5 1.3-5 3.8 0 1 1.1 1.6 2.5 1.6s2.5-.5 2.5-1.5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L0 24l6.33-1.66a11.9 11.9 0 0 0 5.71 1.46h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></symbol>
+  </svg>
+
+  <a class="lm-skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- =====================================================================
+       HEADER
+  ====================================================================== -->
+  <header class="lm-header" data-header>
+    <div class="lm-wrap lm-header__inner">
+      <div class="lm-header__brand">
+        <a href="#topo" class="lm-logo" aria-label="Lok Mob, voltar ao início">
+          <img src="assets/img/logo-on-dark.png" alt="Lok Mob · Acelere sua mobilidade" width="595" height="210">
+        </a>
+        <span class="lm-chip lm-chip--dark lm-header__cities">
+          <svg class="lm-ico lm-ico--accent" aria-hidden="true"><use href="#i-pin"/></svg>
+          Fortaleza · RMF · Sobral
+        </span>
+      </div>
+
+      <nav class="lm-header__nav" aria-label="Principal">
+        <a href="#planos">Planos</a>
+        <a href="#incluso">O que vem no valor</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#duvidas">Dúvidas</a>
+      </nav>
+
+      <a href="#simulacao" class="lm-btn lm-btn--primary lm-btn--sm lm-cta" data-cta="header-simular">
+        <svg class="lm-ico" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+        <span>Simular agora</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===================================================================
+         HERO
+    ==================================================================== -->
+    <section class="lm-hero lm-dark lm-map" id="topo">
+      <figure class="lm-hero__media" data-hero-media>
+        <img src="assets/img/frota-carro-moto.jpg" alt="Carro hatch branco e moto azul da frota Lok Mob estacionados ao pôr do sol" width="1182" height="876" fetchpriority="high">
+        <span class="lm-hero__curtain" aria-hidden="true" data-hero-curtain></span>
+        <figcaption class="lm-badge">Experiência em frotas desde 1997</figcaption>
+      </figure>
+
+      <div class="lm-wrap lm-hero__grid">
+        <div class="lm-hero__copy">
+          <h1 class="lm-hero__title" data-split>Precisa de moto ou carro? A gente providencia.</h1>
+          <p class="lm-hero__lead" data-hero-fade>Aluguel de motos e carros em Fortaleza e Sobral, do jeito que fizer sentido pra você.</p>
+
+          <div class="lm-offers" data-hero-fade>
+            <a href="#planos" class="lm-offer lm-cta" data-cta="hero-oferta-alugar" data-goto-plan="app" data-goto-vehicle="start">
+              <span class="lm-offer__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-key"/></svg></span>
+              <span class="lm-offer__text">
+                <strong>Alugar pelo tempo que precisar</strong>
+                <span>Diária, semanal pra app ou mensal. Moto e carro.</span>
+              </span>
+              <span class="lm-offer__price">
+                <small>moto a partir de</small>
+                <b>R$ 35</b>
+                <small>/dia no semanal</small>
+              </span>
+            </a>
+            <a href="#planos" class="lm-offer lm-offer--accent lm-cta" data-cta="hero-oferta-conquiste" data-goto-plan="conquiste" data-goto-vehicle="start">
+              <span class="lm-offer__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-route"/></svg></span>
+              <span class="lm-offer__text">
+                <strong>Alugar pra ficar com a moto</strong>
+                <span>Lok Mob Conquiste: no último boleto, a moto é sua.</span>
+              </span>
+              <span class="lm-offer__price">
+                <small>a partir de</small>
+                <b>R$ 340</b>
+                <small>/semana</small>
+              </span>
+            </a>
+          </div>
+
+          <div class="lm-hero__actions" data-hero-fade>
+            <a href="#simulacao" class="lm-btn lm-btn--primary lm-btn--lg lm-cta" data-cta="hero-simular">Simular agora</a>
+            <a href="#planos" class="lm-link lm-cta" data-cta="hero-comparar-planos">Comparar todos os planos</a>
+          </div>
+
+          <div class="lm-hero__included" data-hero-fade>
+            <span><svg class="lm-ico lm-ico--accent" aria-hidden="true"><use href="#i-wrench"/></svg><b>Manutenção</b></span>
+            <span class="lm-plus" aria-hidden="true">+</span>
+            <span><svg class="lm-ico lm-ico--accent" aria-hidden="true"><use href="#i-doc"/></svg><b>Documentação</b></span>
+            <span class="lm-plus" aria-hidden="true">+</span>
+            <span><svg class="lm-ico lm-ico--accent" aria-hidden="true"><use href="#i-shield"/></svg><b>Seguro</b></span>
+            <span class="lm-muted">já inclusos em todos os planos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Faixa de diferenciais do contexto do cliente -->
+    <section class="lm-factsband lm-dark" aria-label="Diferenciais Lok Mob">
+      <div class="lm-wrap">
+        <ul class="lm-facts" role="list" data-reveal>
+          <li><svg class="lm-ico" aria-hidden="true"><use href="#i-bank"/></svg><span><b>Sem financiamento bancário</b>Você aluga direto com a Lok Mob.</span></li>
+          <li><svg class="lm-ico" aria-hidden="true"><use href="#i-clock"/></svg><span><b>Contrato digital em até 24h</b>Disponível na plataforma após a aprovação.</span></li>
+          <li><svg class="lm-ico" aria-hidden="true"><use href="#i-refund"/></svg><span><b>Caução estornada</b>Em 15 dias úteis após a entrega do veículo.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PLANOS · COMPARADOR
+    ==================================================================== -->
+    <section class="lm-section lm-light" id="planos" aria-labelledby="planos-title">
+      <div class="lm-wrap lm-plans">
+        <div class="lm-plans__intro">
+          <span class="lm-tag" data-reveal>Planos</span>
+          <h2 class="lm-h2" id="planos-title" data-reveal>Escolha como você vai rodar.</h2>
+          <p class="lm-sub" data-reveal>Três planos pra alugar pelo tempo que precisar e um pra ficar com a moto. Toque no plano e no veículo pra ver o valor em Fortaleza e em Sobral.</p>
+
+          <ul class="lm-planlist" role="list" data-reveal-list>
+            <li><button type="button" class="lm-cta" data-cta="lista-plano-diaria" data-goto-plan="diaria"><b>Diária</b><span>Pra quem precisa do veículo por poucos dias. Mínimo de 3 diárias.</span></button></li>
+            <li><button type="button" class="lm-cta" data-cta="lista-plano-app" data-goto-plan="app"><b>App</b><span>Pra motorista de aplicativo e entregador</span></button></li>
+            <li><button type="button" class="lm-cta" data-cta="lista-plano-flex" data-goto-plan="flex"><b>Flex</b><span>Pra quem precisa do veículo por mais tempo. Adesão mínima de 3 meses.</span></button></li>
+            <li><button type="button" class="lm-cta" data-cta="lista-plano-conquiste" data-goto-plan="conquiste"><b>Conquiste</b><span>Pra quem quer alugar pensando em ficar com a moto. Só moto.</span></button></li>
+          </ul>
+        </div>
+
+        <div class="lm-config" data-reveal-card>
+          <div class="lm-tabs" role="tablist" aria-label="Planos Lok Mob" data-tabs>
+            <button type="button" role="tab" id="tab-diaria" aria-controls="plan-panel" aria-selected="false" tabindex="-1" data-plan="diaria">Diária</button>
+            <button type="button" role="tab" id="tab-app" aria-controls="plan-panel" aria-selected="false" tabindex="-1" data-plan="app">App</button>
+            <button type="button" role="tab" id="tab-flex" aria-controls="plan-panel" aria-selected="false" tabindex="-1" data-plan="flex">Flex</button>
+            <button type="button" role="tab" id="tab-conquiste" aria-controls="plan-panel" aria-selected="true" tabindex="0" data-plan="conquiste">Conquiste</button>
+          </div>
+
+          <div id="plan-panel" role="tabpanel" aria-labelledby="tab-conquiste" class="lm-config__panel">
+            <div class="lm-vehicles" role="radiogroup" aria-label="Veículo" data-vehicles>
+              <!-- renderizado pelo main.js a partir de LM_DATA -->
+            </div>
+
+            <p class="lm-config__desc" data-f="description">Pra quem quer alugar pensando em ficar com a moto</p>
+
+            <div class="lm-prices" aria-live="polite">
+              <div class="lm-price">
+                <span class="lm-price__city">Fortaleza</span>
+                <span class="lm-price__value"><b data-f="price-fortaleza">R$ 390</b><small data-f="unit">/semana*</small></span>
+              </div>
+              <div class="lm-price">
+                <span class="lm-price__city">Sobral</span>
+                <span class="lm-price__value"><b data-f="price-sobral">R$ 390</b><small data-f="unit-sobral">/semana*</small></span>
+              </div>
+            </div>
+            <p class="lm-config__model"><span data-f="model">Honda Bros 160</span><span class="lm-config__same" data-f="same">Mesmo valor nas duas cidades</span></p>
+
+            <div class="lm-waitlist" data-f="waitlist" hidden>
+              <svg class="lm-ico" aria-hidden="true"><use href="#i-clock"/></svg>
+              <p><b>Carros sem vaga no momento.</b> Toda a frota de carros está em contrato. Deixe seu contato e o consultor avisa quando abrir vaga.</p>
+            </div>
+
+            <dl class="lm-specs">
+              <div><dt>Contrato</dt><dd data-f="contract">36 meses</dd></div>
+              <div><dt>Caução</dt><dd data-f="deposit">R$ 800</dd></div>
+              <div><dt>Franquia</dt><dd data-f="mileage">133 km por dia</dd></div>
+              <div><dt>Km excedente</dt><dd data-f="overkm">R$ 0,25</dd></div>
+              <div><dt>Cadastro</dt><dd data-f="credit">Sem consulta ao SPC e Serasa</dd></div>
+              <div><dt>Requisitos</dt><dd data-f="reqs">Maior de 18 anos, CNH válida</dd></div>
+            </dl>
+
+            <p class="lm-config__banner" data-f="banner">No último boleto, a moto é transferida para o seu nome.</p>
+
+            <button type="button" class="lm-btn lm-btn--primary lm-btn--block lm-btn--lg lm-cta" data-cta="comparador-simular" data-config-cta>
+              <span data-f="cta">Simular Conquiste · Bros 160</span>
+              <svg class="lm-ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </button>
+            <p class="lm-legal lm-legal--center">*Valores e condições sujeitos a alteração sem aviso prévio. Todos os planos: manutenção, documentação (IPVA e licenciamento), seguro e suporte 24h no valor.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabela completa por cidade -->
+      <div class="lm-wrap">
+        <div class="lm-pricetable" data-reveal>
+          <div class="lm-pricetable__head">
+            <h3>Tabela de valores por cidade</h3>
+            <p>O Conquiste custa o mesmo nas duas filiais. Diária, App e Flex têm valor próprio em Sobral, e em Sobral o Flex é cobrado por mês.</p>
+          </div>
+          <div class="lm-pricetable__scroll">
+            <table>
+              <caption class="lm-sr">Valores de cada plano e veículo em Fortaleza e em Sobral</caption>
+              <thead>
+                <tr><th scope="col">Plano e veículo</th><th scope="col">Fortaleza</th><th scope="col">Sobral</th></tr>
+              </thead>
+              <tbody data-pricetable></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         JORNADA CONQUISTE
+    ==================================================================== -->
+    <section class="lm-section lm-dark lm-map" aria-labelledby="jornada-title">
+      <div class="lm-wrap">
+        <div class="lm-head">
+          <span class="lm-tag lm-tag--on-dark" data-reveal>Lok Mob Conquiste</span>
+          <h2 class="lm-h2" id="jornada-title" data-reveal>Na Conquiste, cada semana paga te leva mais perto da moto no seu nome.</h2>
+          <p class="lm-sub" data-reveal>E a manutenção segue inclusa do primeiro ao último boleto, coisa que muita locadora corta quando o contrato vira compra.</p>
+        </div>
+
+        <div class="lm-journey" data-journey>
+          <div class="lm-journey__track" aria-hidden="true">
+            <span class="lm-journey__fill" data-journey-fill></span>
+            <span class="lm-journey__end"><svg class="lm-ico"><use href="#i-route"/></svg></span>
+          </div>
+          <ol class="lm-journey__steps" role="list">
+            <li data-journey-step>
+              <h3>Mês 1</h3>
+              <p>Retirada: primeira semana e caução de R$ 800</p>
+            </li>
+            <li data-journey-step>
+              <h3>Mês 1 ao 36</h3>
+              <p>Seguro, rastreamento, IPVA, licenciamento, manutenção e troca de óleo inclusos</p>
+            </li>
+            <li data-journey-step class="is-goal">
+              <h3>Mês 36</h3>
+              <p>Último boleto: a moto é transferida pra você</p>
+            </li>
+          </ol>
+        </div>
+
+        <div class="lm-rowcta" data-reveal>
+          <a href="#simulacao" class="lm-btn lm-btn--primary lm-cta" data-cta="jornada-simular-conquiste" data-prefill-plan="conquiste" data-prefill-vehicle="bros">Simular a Conquiste</a>
+          <p>Bros 160 por R$ 390/semana ou Start 160 por R$ 340/semana, em Fortaleza e em Sobral. 133 km por dia nas duas.*</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         O QUE VEM NO VALOR
+    ==================================================================== -->
+    <section class="lm-section lm-light" id="incluso" aria-labelledby="incluso-title">
+      <div class="lm-wrap">
+        <div class="lm-head">
+          <span class="lm-tag" data-reveal>O que vem no valor</span>
+          <h2 class="lm-h2" id="incluso-title" data-reveal>Manutenção, documentação e seguro: já estão no valor.</h2>
+          <p class="lm-sub" data-reveal>Você só se preocupa em rodar. O resto vem ligado desde o primeiro dia, em qualquer plano, moto ou carro.</p>
+        </div>
+
+        <div class="lm-included">
+          <figure class="lm-included__media" data-reveal-card>
+            <img src="assets/img/bros-orla.jpg" alt="Honda Bros 160 vermelha estacionada na orla, com prédios ao fundo" width="1178" height="836" loading="lazy">
+            <span class="lm-pin" style="--x:9%; --y:30%" data-pin><span class="lm-pin__dot"><svg class="lm-ico" aria-hidden="true"><use href="#i-doc"/></svg></span>Documentação</span>
+            <span class="lm-pin" style="--x:38%; --y:15%" data-pin><span class="lm-pin__dot"><svg class="lm-ico" aria-hidden="true"><use href="#i-shield"/></svg></span>Seguro</span>
+            <span class="lm-pin" style="--x:35%; --y:52%" data-pin><span class="lm-pin__dot"><svg class="lm-ico" aria-hidden="true"><use href="#i-wrench"/></svg></span>Manutenção</span>
+          </figure>
+
+          <div class="lm-card lm-includes" data-reveal-card>
+            <h3>Seu plano inclui</h3>
+            <ul role="list">
+              <li><span class="lm-includes__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-wrench"/></svg></span><span><b>Manutenção preventiva e corretiva</b>Revisão antes de virar problema</span><span class="lm-switch" aria-hidden="true"></span></li>
+              <li><span class="lm-includes__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-doc"/></svg></span><span><b>Documentação</b>IPVA e licenciamento em dia</span><span class="lm-switch" aria-hidden="true"></span></li>
+              <li><span class="lm-includes__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-shield"/></svg></span><span><b>Seguro</b>Você roda protegido, sem apólice à parte</span><span class="lm-switch" aria-hidden="true"></span></li>
+              <li><span class="lm-includes__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-headset"/></svg></span><span><b>Suporte 24 horas</b>Um número pra chamar a qualquer hora</span><span class="lm-switch" aria-hidden="true"></span></li>
+              <li><span class="lm-includes__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-user"/></svg></span><span><b>Atendimento com consultor</b>Uma pessoa acompanha seu contrato</span><span class="lm-switch" aria-hidden="true"></span></li>
+            </ul>
+            <dl class="lm-includes__foot">
+              <div><dt>Fica por sua conta</dt><dd>Combustível e km acima da franquia</dd></div>
+              <div><dt>Pagamento</dt><dd>Pix, espécie ou cartão</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         COMO FUNCIONA · ESTRADA
+    ==================================================================== -->
+    <section class="lm-section lm-dark lm-map" id="como-funciona" aria-labelledby="como-title">
+      <div class="lm-wrap">
+        <div class="lm-head lm-head--center">
+          <span class="lm-tag lm-tag--on-dark" data-reveal>Como funciona</span>
+          <h2 class="lm-h2" id="como-title" data-reveal>Da mensagem até a moto na sua mão.</h2>
+          <p class="lm-sub" data-reveal>Cinco paradas, o mesmo caminho nos quatro planos. Você fala com uma pessoa do começo ao fim.</p>
+        </div>
+
+        <div class="lm-route" data-route>
+          <div class="road-track" aria-hidden="true">
+            <span class="road-track__fill" data-road-fill></span>
+            <span class="road-track__rider" data-road-rider><svg class="lm-ico"><use href="#i-moto"/></svg></span>
+          </div>
+          <ol class="lm-route__list">
+            <li class="lm-route__step" style="--i:1">
+              <span class="lm-route__node" aria-hidden="true">1</span>
+              <article class="lm-route__card">
+                <span class="lm-route__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-route"/></svg></span>
+                <h3><span class="lm-sr">Passo 1: </span>Você pede a simulação</h3>
+                <p>Escolhe plano e veículo e envia o formulário.</p>
+              </article>
+            </li>
+            <li class="lm-route__step" style="--i:2">
+              <span class="lm-route__node" aria-hidden="true">2</span>
+              <article class="lm-route__card">
+                <span class="lm-route__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-user"/></svg></span>
+                <h3><span class="lm-sr">Passo 2: </span>Consultor responde</h3>
+                <p>No WhatsApp, com o valor exato de cada período.</p>
+              </article>
+            </li>
+            <li class="lm-route__step" style="--i:3">
+              <span class="lm-route__node" aria-hidden="true">3</span>
+              <article class="lm-route__card">
+                <span class="lm-route__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-doc"/></svg></span>
+                <h3><span class="lm-sr">Passo 3: </span>Cadastro aprovado</h3>
+                <p>No App e no Conquiste, sem consulta ao SPC e Serasa. Contrato digital em até 24h.</p>
+              </article>
+            </li>
+            <li class="lm-route__step" style="--i:4">
+              <span class="lm-route__node" aria-hidden="true">4</span>
+              <article class="lm-route__card">
+                <span class="lm-route__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-key"/></svg></span>
+                <h3><span class="lm-sr">Passo 4: </span>Retirada</h3>
+                <p>Primeiro período mais a caução. Assina e sai.</p>
+              </article>
+            </li>
+            <li class="lm-route__step" style="--i:5">
+              <span class="lm-route__node" aria-hidden="true">5</span>
+              <article class="lm-route__card">
+                <span class="lm-route__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-headset"/></svg></span>
+                <h3><span class="lm-sr">Passo 5: </span>Rodando</h3>
+                <p>Suporte 24h e manutenção seguem com você.</p>
+              </article>
+            </li>
+          </ol>
+        </div>
+
+        <div class="lm-rowcta lm-rowcta--center" data-reveal>
+          <a href="#simulacao" class="lm-btn lm-btn--primary lm-cta" data-cta="como-funciona-simular">Começar pela simulação</a>
+          <p>Leva menos de um minuto.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         POR QUE RODAR COM A LOK MOB · MOSAICO
+    ==================================================================== -->
+    <section class="lm-section lm-light" aria-labelledby="porque-title">
+      <div class="lm-wrap">
+        <div class="lm-head lm-head--center">
+          <span class="lm-tag" data-reveal>Por que a Lok Mob</span>
+          <h2 class="lm-h2" id="porque-title" data-reveal>Por que rodar com a Lok Mob.</h2>
+        </div>
+
+        <div class="lm-bento">
+          <article class="lm-bento__photo" data-reveal-card>
+            <img src="assets/img/frota-motos.jpg" alt="Motos da frota própria Lok Mob estacionadas lado a lado" width="1178" height="666" loading="lazy">
+            <div class="lm-bento__photo-copy">
+              <span class="lm-chip lm-chip--accent"><svg class="lm-ico" aria-hidden="true"><use href="#i-key"/></svg>Frota própria</span>
+              <h3>Motos e carros da nossa própria frota, revisados antes de chegar em você.</h3>
+            </div>
+          </article>
+
+          <article class="lm-card lm-bento__duration" data-reveal-card>
+            <span class="lm-eyebrow">Você escolhe o contrato</span>
+            <h3>De três dias até a moto ser sua.</h3>
+            <ul class="lm-bars" role="list">
+              <li><b>Diária</b><span class="lm-bars__track"><span class="lm-bars__bar" style="--w:16%" data-bar>3 dias</span></span></li>
+              <li><b>App</b><span class="lm-bars__track"><span class="lm-bars__bar" style="--w:30%" data-bar>1 semana</span></span></li>
+              <li><b>Flex</b><span class="lm-bars__track"><span class="lm-bars__bar" style="--w:52%" data-bar>3 meses</span></span></li>
+              <li><b>Conquiste</b><span class="lm-bars__track"><span class="lm-bars__bar lm-bars__bar--goal" style="--w:100%" data-bar>36 meses · a moto é sua</span></span></li>
+            </ul>
+          </article>
+
+          <article class="lm-bento__credit" data-reveal-card>
+            <div class="lm-bento__strikes">
+              <s>Consulta SPC</s>
+              <s>Consulta Serasa</s>
+            </div>
+            <span class="lm-chip lm-chip--light"><svg class="lm-ico" aria-hidden="true"><use href="#i-check"/></svg>Análise Lok Mob</span>
+            <h3>Cadastro sem consulta ao SPC e Serasa</h3>
+            <p>No Lok Mob App e no Lok Mob Conquiste. A aprovação é feita pela nossa análise.</p>
+          </article>
+
+          <article class="lm-bento__people" data-reveal-card>
+            <span class="lm-eyebrow">Consultor com nome</span>
+            <h3>Nada de fila de robô.</h3>
+            <ul class="lm-people" role="list" data-consultants>
+              <!-- renderizado pelo main.js a partir de LM_DATA.consultants -->
+            </ul>
+            <div class="lm-support">
+              <span class="lm-support__icon"><svg class="lm-ico" aria-hidden="true"><use href="#i-headset"/></svg></span>
+              <p><b>Suporte 24 horas</b>Se algo acontecer na rua, tem quem atender a qualquer hora.</p>
+            </div>
+            <p class="lm-bento__coverage">Fortaleza, Região Metropolitana e Sobral.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SIMULAÇÃO · FORMULÁRIO
+    ==================================================================== -->
+    <section class="lm-section lm-dark lm-map" id="simulacao" aria-labelledby="sim-title">
+      <div class="lm-wrap lm-sim">
+        <div class="lm-sim__copy">
+          <span class="lm-tag lm-tag--on-dark" data-reveal>Simulação</span>
+          <h2 class="lm-h2" id="sim-title" data-reveal>Peça sua simulação.</h2>
+          <p class="lm-sub" data-reveal>Preencha em meio minuto e toque em enviar: o WhatsApp abre com tudo pronto, direto com o consultor da sua cidade.</p>
+          <figure class="lm-sim__photo" data-reveal-card>
+            <img src="assets/img/frota-carro-moto.jpg" alt="" width="1182" height="876" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="lm-card lm-form-card" data-reveal-card>
+          <form class="lm-form" id="lead-form" novalidate>
+            <div class="lm-form__row">
+              <div class="lm-field">
+                <label for="f-name">Seu nome</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Como prefere ser chamado" required aria-describedby="f-name-err">
+                <p class="lm-field__error" id="f-name-err" aria-live="polite"></p>
+              </div>
+              <div class="lm-field">
+                <label for="f-phone">WhatsApp</label>
+                <input id="f-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(85) 9 0000-0000" maxlength="16" required aria-describedby="f-phone-err">
+                <p class="lm-field__error" id="f-phone-err" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <div class="lm-form__row">
+              <div class="lm-field">
+                <label for="f-city">Cidade</label>
+                <select id="f-city" name="city" required aria-describedby="f-city-err">
+                  <option value="" selected disabled>Selecione</option>
+                  <option value="fortaleza">Fortaleza</option>
+                  <option value="rmf">Região Metropolitana (RMF)</option>
+                  <option value="sobral">Sobral</option>
+                </select>
+                <p class="lm-field__error" id="f-city-err" aria-live="polite"></p>
+              </div>
+              <div class="lm-field">
+                <label for="f-consultant">Consultor</label>
+                <select id="f-consultant" name="consultant" data-consultant-select>
+                  <option value="">Qualquer um da minha cidade</option>
+                  <!-- opções renderizadas pelo main.js a partir de LM_DATA.consultants -->
+                </select>
+              </div>
+            </div>
+
+            <div class="lm-field">
+              <label for="f-plan">Plano</label>
+              <select id="f-plan" name="plan" required>
+                <option value="diaria">Diária (mín. 3 diárias)</option>
+                <option value="app">App (semanal)</option>
+                <option value="flex">Flex (mín. 3 meses)</option>
+                <option value="conquiste" selected>Conquiste (36 meses)</option>
+              </select>
+            </div>
+
+            <fieldset class="lm-field lm-segment">
+              <legend>Veículo</legend>
+              <div class="lm-segment__grid">
+                <label><input type="radio" name="vehicle" value="bros" checked><span>Bros 160</span></label>
+                <label><input type="radio" name="vehicle" value="start"><span>Start 160</span></label>
+                <label data-car-option><input type="radio" name="vehicle" value="carro"><span>Carro</span></label>
+                <label><input type="radio" name="vehicle" value="nao-sei"><span>Não sei</span></label>
+              </div>
+              <p class="lm-field__hint" data-vehicle-hint></p>
+            </fieldset>
+
+            <button type="submit" class="lm-btn lm-btn--primary lm-btn--block lm-btn--lg lm-cta" data-cta="form-enviar-whatsapp">
+              <svg class="lm-ico" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+              <span>Enviar e abrir o WhatsApp</span>
+            </button>
+            <p class="lm-form__note" data-form-status role="status">O WhatsApp abre com a mensagem pronta. Nada é enviado antes de você tocar em enviar por lá.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         DÚVIDAS
+    ==================================================================== -->
+    <section class="lm-section lm-light" id="duvidas" aria-labelledby="faq-title">
+      <div class="lm-wrap lm-faq">
+        <div class="lm-faq__intro">
+          <span class="lm-tag" data-reveal>Dúvidas</span>
+          <h2 class="lm-h2" id="faq-title" data-reveal>Antes de pedir a simulação.</h2>
+          <p class="lm-sub" data-reveal>Se ficar alguma pergunta, o consultor responde no WhatsApp.</p>
+          <a href="#simulacao" class="lm-btn lm-btn--ghost lm-cta" data-cta="faq-falar-consultor" data-reveal>Falar com um consultor</a>
+        </div>
+
+        <div class="lm-accordion" data-accordion>
+          <details>
+            <summary>Preciso de financiamento bancário?<svg class="lm-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="lm-accordion__body"><p>Não precisa. Você aluga direto com a Lok Mob, sem banco no meio. No Conquiste, a moto passa pro seu nome no último boleto do contrato de 36 meses.</p></div>
+          </details>
+          <details>
+            <summary>Qual o período mínimo de cada plano?<svg class="lm-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="lm-accordion__body"><p>Diária: mínimo de 3 diárias por contrato. App: semanal. Flex: adesão mínima de 3 meses, depois renova mês a mês. Conquiste: 36 meses, e a moto fica com você.</p></div>
+          </details>
+          <details>
+            <summary>O valor muda entre Fortaleza e Sobral?<svg class="lm-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="lm-accordion__body"><p>Depende do plano. O Conquiste custa o mesmo nas duas filiais. Diária, App e Flex têm valor e caução próprios em Sobral, e lá o Flex é cobrado por mês. A tabela de valores por cidade mostra tudo lado a lado.</p></div>
+          </details>
+          <details>
+            <summary>Como funciona a caução?<svg class="lm-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="lm-accordion__body"><p>Você paga a caução na retirada, junto com o primeiro período. Ela é estornada em 15 dias úteis após a entrega do veículo, conforme o contrato.</p></div>
+          </details>
+          <details>
+            <summary>Quando recebo o contrato?<svg class="lm-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="lm-accordion__body"><p>O contrato é um documento eletrônico, assinado pela plataforma. Ele fica disponível em até 24 horas depois da aprovação do cadastro.</p></div>
+          </details>
+          <details>
+            <summary>Tem consulta ao SPC e Serasa?<svg class="lm-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="lm-accordion__body"><p>No Lok Mob App e no Lok Mob Conquiste, o cadastro é aprovado pela análise da própria Lok Mob, sem consulta ao SPC e Serasa.</p></div>
+          </details>
+          <details>
+            <summary>Tem carro disponível?<svg class="lm-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="lm-accordion__body"><p>No momento, a frota de carros está toda em contrato. Os planos Diária, App e Flex seguem com carro, e você pode entrar na lista de espera pela simulação. O Conquiste é só moto.</p></div>
+          </details>
+          <details>
+            <summary>O que preciso pra alugar?<svg class="lm-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="lm-accordion__body"><p>Ser maior de 18 anos e ter CNH válida. No plano App, a CNH precisa ter EAR. Os requisitos de cada plano e veículo aparecem no comparador.</p></div>
+          </details>
+          <details>
+            <summary>Quais as formas de pagamento?<svg class="lm-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="lm-accordion__body"><p>Pix, espécie ou cartão. Combustível e km acima da franquia ficam por sua conta.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       RODAPÉ
+  ====================================================================== -->
+  <footer class="lm-foot">
+    <div class="lm-wrap">
+      <div class="lm-foot__grid">
+        <div class="lm-foot__brand">
+          <img src="assets/img/logo-on-dark.png" alt="Lok Mob · Acelere sua mobilidade" width="595" height="210" loading="lazy">
+          <p>Lok Mob · aluguel de motos e carros: Diária, App, Flex e Conquiste. Fortaleza, Região Metropolitana e Sobral (CE).</p>
+        </div>
+        <nav class="lm-foot__col" aria-label="Rodapé">
+          <h2>Navegue</h2>
+          <a href="#planos">Planos</a>
+          <a href="#incluso">O que vem no valor</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#duvidas">Dúvidas</a>
+        </nav>
+        <div class="lm-foot__col">
+          <h2>Filiais</h2>
+          <p>Fortaleza (CE)</p>
+          <p>Sobral (CE)</p>
+          <a href="#simulacao" class="lm-cta" data-cta="rodape-pedir-simulacao">Pedir simulação</a>
+        </div>
+      </div>
+      <div class="lm-foot__bottom">
+        <p>Valores e condições sujeitos a alteração sem aviso prévio. Liberação do veículo mediante análise e aprovação de cadastro. Caução estornada em 15 dias úteis após a entrega do veículo, conforme contrato.</p>
+        <p>© 2026 Lok Mob. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

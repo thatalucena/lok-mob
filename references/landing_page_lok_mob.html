@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lok Mob — Aluguel de motos e carros em Fortaleza e Sobral</title>
+  <meta name="description" content="Aluguel de motos e carros em Fortaleza, Região Metropolitana e Sobral. Planos Diária, App, Flex e Conquiste. Sem consulta ao SPC/Serasa.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fontes Google: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Configurações personalizadas do Tailwind refletindo o Design System -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            ink: {
+              800: '#1D1E22',
+              900: '#16171B',
+              950: '#0F1012',
+            },
+            paper: '#EEEFEB',
+            accent: {
+              DEFAULT: '#D1421A',
+              hover: '#B83512',
+              light: '#FF7947',
+              soft: '#FCE8E1',
+            },
+            border: {
+              dark: '#292A2E',
+              light: '#DADBD7',
+            },
+            muted: '#777980',
+          },
+          borderRadius: {
+            'card': '22px',
+            'control': '14px',
+          },
+          boxShadow: {
+            'card': '0 16px 28px rgba(0, 0, 0, 0.08)',
+            'card-dark': '0 16px 32px rgba(0, 0, 0, 0.4)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Malha e grid sutis de background para seções escuras */
+    .bg-grid-subtle {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    
+    /* Efeito de estrada com faixa tracejada central */
+    .road-track {
+      position: relative;
+    }
+    .road-track::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 14px;
+      background: #25272D;
+      transform: translateY(-50%);
+      border-radius: 999px;
+      z-index: 1;
+    }
+    .road-track::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      right: 60px;
+      height: 2px;
+      background: repeating-linear-gradient(to right, #DADBD7, #DADBD7 14px, transparent 14px, transparent 28px);
+      transform: translateY(-50%);
+      z-index: 2;
+    }
+
+    /* Utilitário para ocultar scrollbar horizontal em mobile */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-ink-900 text-white font-sans antialiased selection:bg-accent selection:text-white">
+
+  <!-- =========================================================================
+       1. CABEÇALHO / HEADER
+  ========================================================================== -->
+  <header class="w-full border-b border-border-dark bg-ink-900/90 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo + Cobertura -->
+      <div class="flex items-center gap-4 lg:gap-6">
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="bg-accent text-white font-black text-xl px-2 py-0.5 rounded-lg tracking-tight">LK</div>
+          <div class="flex flex-col">
+            <span class="text-white font-bold text-lg leading-tight tracking-tight">Mob</span>
+            <span class="text-[9px] text-muted tracking-wider uppercase -mt-0.5">Acelere sua mobilidade</span>
+          </div>
+        </a>
+
+        <!-- Badge de Cidades atendidas -->
+        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-ink-800 border border-border-dark text-[13px] text-gray-300">
+          <svg class="w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Fortaleza · RMF · Sobral</span>
+        </div>
+      </div>
+
+      <!-- Links de navegação âncora -->
+      <nav class="hidden md:flex items-center gap-8 text-[15px] font-medium text-gray-300">
+        <a href="#planos" class="hover:text-white transition-colors">Planos</a>
+        <a href="#incluso" class="hover:text-white transition-colors">O que vem no valor</a>
+        <a href="#como-funciona" class="hover:text-white transition-colors">Como funciona</a>
+      </nav>
+
+      <!-- CTA Principal Header -->
+      <div>
+        <a href="#simulacao" class="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-[15px] font-semibold px-5 py-2.5 rounded-control transition-all shadow-md active:scale-95">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Simular agora</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. HERO SECTION
+  ========================================================================== -->
+  <section class="relative bg-ink-900 bg-grid-subtle pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Coluna Esquerda: Texto + Cards de Oferta + CTAs -->
+        <div class="lg:col-span-7 flex flex-col">
+          <h1 class="text-4xl sm:text-5xl lg:text-[4.25rem] font-extrabold text-white leading-[1.05] tracking-tight mb-5">
+            Precisa de moto ou carro? A gente providencia.
+          </h1>
+          
+          <p class="text-lg lg:text-xl text-gray-300 font-normal leading-relaxed mb-8 max-w-xl">
+            Aluguel de motos e carros em Fortaleza e Sobral, do jeito que fizer sentido pra você.
+          </p>
+
+          <!-- Cards Rápidos de Preço / Oferta -->
+          <div class="space-y-3.5 mb-8 max-w-xl">
+            
+            <!-- Card 1: Alugar pelo tempo que precisar -->
+            <a href="#planos" onclick="switchPlanTab('flex')" class="group flex items-center justify-between bg-white text-ink-950 p-4 sm:p-5 rounded-card shadow-lg hover:shadow-xl transition-all border border-transparent hover:border-accent/40">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center shrink-0 text-ink-950 group-hover:bg-accent/10 group-hover:text-accent transition-colors">
+                  <!-- Ícone Chave -->
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="7.5" cy="15.5" r="5.5"/>
+                    <path d="m21 2-9.6 9.6"/>
+                    <path d="m15.5 7.5 3 3L22 7l-3-3"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-base sm:text-lg text-ink-950">Alugar pelo tempo que precisar</h3>
+                  <p class="text-xs sm:text-sm text-muted">Diária, semanal pra app ou mensal. Moto e carro.</p>
+                </div>
+              </div>
+              <div class="text-right shrink-0 pl-3">
+                <span class="block text-[11px] sm:text-xs text-muted uppercase font-semibold">moto a partir de</span>
+                <span class="text-xl sm:text-2xl font-black text-ink-950">R$ 35</span>
+                <span class="block text-[10px] sm:text-xs text-muted">/dia no semanal*</span>
+              </div>
+            </a>
+
+            <!-- Card 2: Alugar pra ficar com a moto (Conquiste) -->
+            <a href="#planos" onclick="switchPlanTab('conquiste')" class="group flex items-center justify-between bg-white text-ink-950 p-4 sm:p-5 rounded-card shadow-lg hover:shadow-xl transition-all border border-transparent hover:border-accent/40">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-accent-soft text-accent flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors">
+                  <!-- Ícone Rota / Caminho -->
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="6" cy="19" r="3"/>
+                    <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/>
+                    <circle cx="18" cy="5" r="3"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-base sm:text-lg text-ink-950">Alugar pra ficar com a moto</h3>
+                  <p class="text-xs sm:text-sm text-muted">Lok Mob Conquiste: no último boleto, a moto é sua.</p>
+                </div>
+              </div>
+              <div class="text-right shrink-0 pl-3">
+                <span class="block text-[11px] sm:text-xs text-muted uppercase font-semibold">a partir de</span>
+                <span class="text-xl sm:text-2xl font-black text-ink-950">R$ 340</span>
+                <span class="block text-[10px] sm:text-xs text-muted">/semana*</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Ações CTA -->
+          <div class="flex flex-wrap items-center gap-6 mb-10">
+            <a href="#simulacao" class="bg-accent hover:bg-accent-hover text-white text-base font-bold px-8 py-3.5 rounded-control transition-all shadow-lg active:scale-95">
+              Simular agora
+            </a>
+            <a href="#planos" class="text-white hover:text-accent-light font-semibold text-base underline underline-offset-4 decoration-white/40 hover:decoration-accent-light transition-all">
+              Comparar todos os planos
+            </a>
+          </div>
+
+          <!-- Linha de Inclusões Base -->
+          <div class="pt-6 border-t border-border-dark text-xs sm:text-sm text-gray-300 flex flex-wrap items-center gap-y-2 gap-x-4">
+            <div class="flex items-center gap-1.5 font-bold text-white">
+              <svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              <span>Manutenção</span>
+            </div>
+            <span class="text-muted">+</span>
+            <div class="flex items-center gap-1.5 font-bold text-white">
+              <svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Documentação</span>
+            </div>
+            <span class="text-muted">+</span>
+            <div class="flex items-center gap-1.5 font-bold text-white">
+              <svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Seguro</span>
+            </div>
+            <span class="text-muted">já inclusos em todos os planos</span>
+          </div>
+
+          <p class="text-[11px] text-muted mt-2">
+            *Moto Start 160 no plano semanal (R$ 250/semana). Conquiste com a Start 160, contrato de 36 meses. Valores e condições sujeitos a alteração sem aviso prévio.
+          </p>
+        </div>
+
+        <!-- Coluna Direita: Fotografia do Veículo -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative rounded-card overflow-hidden shadow-card-dark border border-border-dark/60 bg-ink-800">
+            <img 
+              src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1000&auto=format&fit=crop" 
+              alt="Carro e moto da frota Lok Mob" 
+              class="w-full h-[380px] sm:h-[460px] lg:h-[500px] object-cover"
+            />
+            <!-- Overlay gradiente sutil -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            
+            <!-- Badge Flutuante: Experiência em Frotas -->
+            <div class="absolute bottom-5 left-5 bg-ink-950/85 backdrop-blur-md border border-white/10 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-lg">
+              Experiência em frotas desde 1997
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       3. COMPARADOR DE PLANOS (LIGHT UI)
+  ========================================================================== -->
+  <section id="planos" class="bg-paper text-ink-950 py-20 lg:py-28 border-t border-border-light">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+        
+        <!-- Coluna Esquerda: Apresentação e Lista dos 4 Planos -->
+        <div class="lg:col-span-5">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink-950 leading-[1.1] mb-5 tracking-tight">
+            Escolha como você vai rodar.
+          </h2>
+          <p class="text-base sm:text-lg text-muted mb-8 leading-relaxed">
+            Três planos pra alugar pelo tempo que precisar e um pra ficar com a moto. Toque no plano e no veículo pra ver o valor e as condições.
+          </p>
+
+          <!-- Tabela Resumo dos 4 Planos -->
+          <div class="divide-y divide-border-light border-y border-border-light">
+            <button onclick="switchPlanTab('diaria')" class="w-full text-left py-4 flex items-baseline justify-between group">
+              <span class="font-bold text-lg text-ink-950 group-hover:text-accent transition-colors">Diária</span>
+              <span class="text-sm text-muted">Pra quem precisa do veículo por poucos dias</span>
+            </button>
+            <button onclick="switchPlanTab('app')" class="w-full text-left py-4 flex items-baseline justify-between group">
+              <span class="font-bold text-lg text-ink-950 group-hover:text-accent transition-colors">App</span>
+              <span class="text-sm text-muted">Pra motorista de aplicativo e entregador</span>
+            </button>
+            <button onclick="switchPlanTab('flex')" class="w-full text-left py-4 flex items-baseline justify-between group">
+              <span class="font-bold text-lg text-ink-950 group-hover:text-accent transition-colors">Flex</span>
+              <span class="text-sm text-muted">Pra quem precisa do veículo por mais tempo, com flexibilidade</span>
+            </button>
+            <button onclick="switchPlanTab('conquiste')" class="w-full text-left py-4 flex items-baseline justify-between group">
+              <span class="font-bold text-lg text-ink-950 group-hover:text-accent transition-colors">Conquiste</span>
+              <span class="text-sm text-muted">Pra quem quer alugar pensando em ficar com a moto. Só moto.</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Coluna Direita: O Card Configurador Interativo -->
+        <div class="lg:col-span-7">
+          <div class="bg-white rounded-card p-6 sm:p-8 shadow-card border border-border-light/80">
+            
+            <!-- Abas dos 4 Planos -->
+            <div class="grid grid-cols-4 bg-[#E4E5E0] p-1.5 rounded-2xl mb-6" role="tablist">
+              <button id="tab-diaria" onclick="switchPlanTab('diaria')" class="py-2.5 px-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-muted hover:text-ink-950">
+                Diária
+              </button>
+              <button id="tab-app" onclick="switchPlanTab('app')" class="py-2.5 px-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-muted hover:text-ink-950">
+                App
+              </button>
+              <button id="tab-flex" onclick="switchPlanTab('flex')" class="py-2.5 px-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-muted hover:text-ink-950">
+                Flex
+              </button>
+              <button id="tab-conquiste" onclick="switchPlanTab('conquiste')" class="py-2.5 px-2 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-white text-ink-950 shadow-sm">
+                Conquiste
+              </button>
+            </div>
+
+            <!-- Seleção de Veículos -->
+            <div class="grid grid-cols-3 gap-3 mb-6">
+              
+              <!-- Start 160 -->
+              <button id="veh-start" onclick="switchVehicle('start')" class="border-2 border-border-light p-2.5 sm:p-3 rounded-2xl flex items-center gap-2 sm:gap-3 text-left transition-all hover:border-ink-950">
+                <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=120&auto=format&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="Start 160">
+                <div class="overflow-hidden">
+                  <div class="font-bold text-xs sm:text-sm text-ink-950 truncate">Start 160</div>
+                  <div class="text-[10px] sm:text-xs text-muted truncate">Pra cidade</div>
+                </div>
+              </button>
+
+              <!-- Bros 160 (Ativo na captura) -->
+              <button id="veh-bros" onclick="switchVehicle('bros')" class="border-2 border-ink-950 p-2.5 sm:p-3 rounded-2xl flex items-center gap-2 sm:gap-3 text-left transition-all bg-black/5">
+                <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=120&auto=format&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="Bros 160">
+                <div class="overflow-hidden">
+                  <div class="font-bold text-xs sm:text-sm text-ink-950 truncate">Bros 160</div>
+                  <div class="text-[10px] sm:text-xs text-muted truncate">Pra estrada</div>
+                </div>
+              </button>
+
+              <!-- Carro -->
+              <button id="veh-carro" onclick="switchVehicle('carro')" class="border border-border-light p-2.5 sm:p-3 rounded-2xl flex items-center gap-2 sm:gap-3 text-left transition-all opacity-60 hover:opacity-100">
+                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=120&auto=format&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="Carro">
+                <div class="overflow-hidden">
+                  <div class="font-bold text-xs sm:text-sm text-ink-950 truncate">Carro</div>
+                  <div id="veh-carro-sub" class="text-[10px] sm:text-xs text-accent font-medium truncate">Sem vaga agora</div>
+                </div>
+              </button>
+            </div>
+
+            <!-- Preço e Detalhes do Plano Selecionado -->
+            <div class="mb-6">
+              <p id="plan-description" class="text-sm font-medium text-muted mb-1">
+                Pra quem quer alugar pensando em ficar com a moto
+              </p>
+              
+              <div class="flex items-baseline gap-2 mb-1">
+                <span id="plan-price" class="text-5xl sm:text-6xl font-extrabold tracking-tight text-ink-950">
+                  R$ 390
+                </span>
+                <span id="plan-unit" class="text-base sm:text-lg font-semibold text-muted">/semana*</span>
+              </div>
+              <div id="plan-model-title" class="text-sm font-semibold text-ink-950">
+                Honda Bros 160
+              </div>
+            </div>
+
+            <!-- Tabela de Atributos Contratuais -->
+            <div class="divide-y divide-border-light/80 border-t border-b border-border-light/80 text-sm mb-6">
+              <div class="py-2.5 flex justify-between">
+                <span class="text-muted">Contrato</span>
+                <span id="spec-contract" class="font-bold text-ink-950">36 meses</span>
+              </div>
+              <div class="py-2.5 flex justify-between">
+                <span class="text-muted">Caução</span>
+                <span id="spec-deposit" class="font-bold text-ink-950">R$ 800</span>
+              </div>
+              <div class="py-2.5 flex justify-between">
+                <span class="text-muted">Franquia</span>
+                <span id="spec-mileage" class="font-bold text-ink-950">133 km por dia</span>
+              </div>
+              <div class="py-2.5 flex justify-between">
+                <span class="text-muted">Km excedente</span>
+                <span id="spec-overkm" class="font-bold text-ink-950">R$ 0,25</span>
+              </div>
+              <div class="py-2.5 flex justify-between">
+                <span class="text-muted">Cadastro</span>
+                <span id="spec-credit" class="font-bold text-ink-950">Sem consulta ao SPC e Serasa</span>
+              </div>
+              <div class="py-2.5 flex justify-between">
+                <span class="text-muted">Requisitos</span>
+                <span id="spec-reqs" class="font-bold text-ink-950">Maior de 18 anos, CNH válida</span>
+              </div>
+            </div>
+
+            <!-- Faixa Informativa Conquiste -->
+            <div id="conquiste-banner" class="bg-gray-100 rounded-control p-3.5 mb-6 text-xs sm:text-sm font-semibold text-ink-950 text-center">
+              No último boleto, a moto é transferida para o seu nome.
+            </div>
+
+            <!-- Botão Dinâmico de Ação -->
+            <button onclick="populateFormFromComparator()" class="w-full bg-accent hover:bg-accent-hover text-white text-base font-bold py-4 rounded-control transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2">
+              <span id="btn-comparator-text">Simular Conquiste · Bros 160</span>
+            </button>
+
+            <!-- Nota de Rodapé do Card -->
+            <p class="text-[11px] text-muted text-center mt-4">
+              *Valores e condições sujeitos a alteração sem aviso prévio. Todos os planos: manutenção, documentação (IPVA e licenciamento), seguro e suporte 24h no valor.
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4. JORNADA CONQUISTE (DARK UI)
+  ========================================================================== -->
+  <section class="bg-ink-900 bg-grid-subtle py-20 lg:py-28 border-t border-border-dark">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+      
+      <!-- Cabeçalho da Seção -->
+      <div class="max-w-2xl mb-14">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight">
+          Na Conquiste, cada semana paga te leva mais perto da moto no seu nome.
+        </h2>
+        <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+          E a manutenção não para no meio do caminho. Ela segue inclusa do primeiro ao último boleto, coisa que muita locadora corta quando o contrato vira compra.
+        </p>
+      </div>
+
+      <!-- Linha do Tempo / Timeline Interativa -->
+      <div class="relative mb-16 pt-6">
+        
+        <!-- Linha Horizontal Coral / Laranja Luminosa -->
+        <div class="relative w-full h-1.5 bg-accent-light rounded-full mb-8">
+          <!-- Ícone Trajeto na Ponta Direita -->
+          <div class="absolute -right-3 -top-3.5 w-8 h-8 rounded-full bg-white flex items-center justify-center text-accent shadow-md">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="6" cy="19" r="3"/>
+              <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/>
+              <circle cx="18" cy="5" r="3"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 3 Marcos da Linha do Tempo -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Marco 1 -->
+          <div>
+            <div class="text-xl font-bold text-white mb-2">Mês 1</div>
+            <p class="text-sm text-gray-400">
+              Retirada: primeira semana e caução de R$ 800
+            </p>
+          </div>
+
+          <!-- Marco 2 -->
+          <div>
+            <div class="text-xl font-bold text-white mb-2">Mês 1 ao 36</div>
+            <p class="text-sm text-gray-400">
+              Seguro, rastreamento, IPVA, licenciamento, manutenção e troca de óleo inclusos
+            </p>
+          </div>
+
+          <!-- Marco 3 -->
+          <div class="md:text-right">
+            <div class="text-xl font-bold text-accent-light mb-2">Mês 36</div>
+            <p class="text-sm text-gray-400">
+              Último boleto: a moto é transferida pra você
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CTA e Comparativo -->
+      <div class="pt-8 border-t border-border-dark flex flex-wrap items-center gap-6">
+        <a href="#simulacao" onclick="setFormPlanVehicle('Conquiste', 'Bros 160')" class="bg-accent hover:bg-accent-hover text-white text-base font-bold px-7 py-3 rounded-control transition-all shadow-md active:scale-95">
+          Simular a Conquiste
+        </a>
+        <p class="text-xs sm:text-sm text-gray-400">
+          Bros 160 por R$ 390/semana ou Start 160 por R$ 340/semana. 133 km por dia nas duas.*
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. SERVIÇOS INCLUÍDOS NO PLANO (LIGHT UI)
+  ========================================================================== -->
+  <section id="incluso" class="bg-paper text-ink-950 py-20 lg:py-28 border-t border-border-light">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+      
+      <!-- Cabeçalho -->
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink-950 leading-tight mb-4 tracking-tight">
+          Manutenção, documentação e seguro: já estão no valor.
+        </h2>
+        <p class="text-base sm:text-lg text-muted">
+          Você só se preocupa em rodar. O resto vem ligado desde o primeiro dia, em qualquer plano, moto ou carro.
+        </p>
+      </div>
+
+      <!-- Grid: Imagem com Pins + Checklist com Switches -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        
+        <!-- Coluna Esquerda: Fotografia com Etiquetas Flutuantes -->
+        <div class="lg:col-span-7 relative">
+          <div class="relative rounded-card overflow-hidden shadow-card border border-border-light bg-black">
+            <img 
+              src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop" 
+              alt="Moto Honda Bros Lok Mob" 
+              class="w-full h-[360px] sm:h-[440px] lg:h-[480px] object-cover"
+            />
+            
+            <!-- Pin 1: Documentação -->
+            <div class="absolute top-1/3 left-8 flex items-center bg-white/95 backdrop-blur-sm rounded-full p-1 pr-4 shadow-lg border border-black/5 animate-pulse">
+              <span class="w-7 h-7 rounded-full bg-accent text-white flex items-center justify-center mr-2 shadow">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </span>
+              <span class="text-xs sm:text-sm font-bold text-ink-950">Documentação</span>
+            </div>
+
+            <!-- Pin 2: Seguro -->
+            <div class="absolute top-1/4 right-20 flex items-center bg-white/95 backdrop-blur-sm rounded-full p-1 pr-4 shadow-lg border border-black/5">
+              <span class="w-7 h-7 rounded-full bg-accent text-white flex items-center justify-center mr-2 shadow">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </span>
+              <span class="text-xs sm:text-sm font-bold text-ink-950">Seguro</span>
+            </div>
+
+            <!-- Pin 3: Manutenção -->
+            <div class="absolute bottom-16 left-1/3 flex items-center bg-white/95 backdrop-blur-sm rounded-full p-1 pr-4 shadow-lg border border-black/5">
+              <span class="w-7 h-7 rounded-full bg-accent text-white flex items-center justify-center mr-2 shadow">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              </span>
+              <span class="text-xs sm:text-sm font-bold text-ink-950">Manutenção</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna Direita: Card Seu Plano Inclui -->
+        <div class="lg:col-span-5">
+          <div class="bg-white rounded-card p-6 sm:p-8 shadow-card border border-border-light/80">
+            <h3 class="font-bold text-xl text-ink-950 mb-6">Seu plano inclui</h3>
+
+            <!-- 5 Itens com Chave Visual Laranja Ligada -->
+            <div class="space-y-4 mb-8">
+              
+              <!-- Item 1 -->
+              <div class="flex items-center justify-between pb-3 border-b border-border-light/60">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-ink-950 shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-sm text-ink-950">Manutenção preventiva e corretiva</h4>
+                    <p class="text-xs text-muted">Revisão antes de virar problema</p>
+                  </div>
+                </div>
+                <!-- Switch Laranja Ligado -->
+                <div class="w-11 h-6 bg-accent rounded-full p-1 relative flex items-center shrink-0">
+                  <div class="w-4 h-4 bg-white rounded-full ml-auto shadow-sm"></div>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="flex items-center justify-between pb-3 border-b border-border-light/60">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-ink-950 shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-sm text-ink-950">Documentação</h4>
+                    <p class="text-xs text-muted">IPVA e licenciamento em dia</p>
+                  </div>
+                </div>
+                <div class="w-11 h-6 bg-accent rounded-full p-1 relative flex items-center shrink-0">
+                  <div class="w-4 h-4 bg-white rounded-full ml-auto shadow-sm"></div>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="flex items-center justify-between pb-3 border-b border-border-light/60">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-ink-950 shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-sm text-ink-950">Seguro</h4>
+                    <p class="text-xs text-muted">Você roda protegido, sem apólice à parte</p>
+                  </div>
+                </div>
+                <div class="w-11 h-6 bg-accent rounded-full p-1 relative flex items-center shrink-0">
+                  <div class="w-4 h-4 bg-white rounded-full ml-auto shadow-sm"></div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="flex items-center justify-between pb-3 border-b border-border-light/60">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-ink-950 shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-sm text-ink-950">Suporte 24 horas</h4>
+                    <p class="text-xs text-muted">Um número pra chamar a qualquer hora</p>
+                  </div>
+                </div>
+                <div class="w-11 h-6 bg-accent rounded-full p-1 relative flex items-center shrink-0">
+                  <div class="w-4 h-4 bg-white rounded-full ml-auto shadow-sm"></div>
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-ink-950 shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-sm text-ink-950">Atendimento com consultor</h4>
+                    <p class="text-xs text-muted">Uma pessoa acompanha seu contrato</p>
+                  </div>
+                </div>
+                <div class="w-11 h-6 bg-accent rounded-full p-1 relative flex items-center shrink-0">
+                  <div class="w-4 h-4 bg-white rounded-full ml-auto shadow-sm"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Rodapé do Card: Exclusões e Formas de Pagamento -->
+            <div class="pt-4 border-t border-border-light text-xs space-y-2">
+              <div class="flex justify-between">
+                <span class="text-muted">Fica por sua conta</span>
+                <span class="font-semibold text-ink-950">Combustível e km acima da franquia</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-muted">Pagamento</span>
+                <span class="font-semibold text-ink-950">Pix, espécie ou cartão</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. TRILHA "COMO FUNCIONA" (DARK UI)
+  ========================================================================== -->
+  <section id="como-funciona" class="bg-ink-900 bg-grid-subtle py-20 lg:py-28 border-t border-border-dark">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+      
+      <!-- Cabeçalho -->
+      <div class="max-w-2xl mb-16">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight">
+          Da mensagem até a moto na sua mão.
+        </h2>
+        <p class="text-base sm:text-lg text-gray-300">
+          Cinco paradas, o mesmo caminho nos quatro planos. Você fala com uma pessoa do começo ao fim.
+        </p>
+      </div>
+
+      <!-- Trilha da Estrada com 5 nós (Desktop: Estrada horizontal; Mobile: Vertical) -->
+      <div class="relative py-8">
+        
+        <!-- Pista Horizontal Desktop -->
+        <div class="hidden lg:block relative my-24">
+          <!-- Trilha de asfalto -->
+          <div class="w-full h-4 bg-[#212328] rounded-full relative">
+            <div class="absolute inset-y-1.5 left-4 right-16 border-t-2 border-dashed border-gray-400"></div>
+          </div>
+
+          <!-- Marcadores e Cards Desktop (Alternando Cima / Baixo) -->
+          
+          <!-- Etapa 1 (Cima) -->
+          <div class="absolute left-0 -top-40 w-52">
+            <div class="bg-white text-ink-950 p-4 rounded-2xl shadow-card border border-white/20 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-accent-soft text-accent flex items-center justify-center mb-2">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+              </div>
+              <h4 class="font-bold text-sm leading-tight text-ink-950">Você pede a simulação</h4>
+              <p class="text-[11px] text-muted mt-1 leading-normal">Escolhe plano e veículo e envia o formulário.</p>
+            </div>
+            <!-- Pino 1 na pista -->
+            <div class="w-8 h-8 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center mx-auto shadow-md relative top-2">
+              1
+            </div>
+          </div>
+
+          <!-- Etapa 2 (Baixo) -->
+          <div class="absolute left-[22%] -bottom-40 w-52">
+            <!-- Pino 2 na pista -->
+            <div class="w-8 h-8 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center mx-auto shadow-md relative -top-3">
+              2
+            </div>
+            <div class="bg-white text-ink-950 p-4 rounded-2xl shadow-card border border-white/20 mt-3">
+              <div class="w-8 h-8 rounded-lg bg-accent-soft text-accent flex items-center justify-center mb-2">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <h4 class="font-bold text-sm leading-tight text-ink-950">Consultor responde</h4>
+              <p class="text-[11px] text-muted mt-1 leading-normal">No WhatsApp, com o valor exato de cada período.</p>
+            </div>
+          </div>
+
+          <!-- Etapa 3 (Cima) -->
+          <div class="absolute left-[44%] -top-40 w-52">
+            <div class="bg-white text-ink-950 p-4 rounded-2xl shadow-card border border-white/20 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-accent-soft text-accent flex items-center justify-center mb-2">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <h4 class="font-bold text-sm leading-tight text-ink-950">Cadastro aprovado</h4>
+              <p class="text-[11px] text-muted mt-1 leading-normal">No App e no Conquiste, sem consulta ao SPC e Serasa.</p>
+            </div>
+            <!-- Pino 3 na pista -->
+            <div class="w-8 h-8 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center mx-auto shadow-md relative top-2">
+              3
+            </div>
+          </div>
+
+          <!-- Etapa 4 (Baixo) -->
+          <div class="absolute left-[66%] -bottom-40 w-52">
+            <!-- Pino 4 na pista -->
+            <div class="w-8 h-8 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center mx-auto shadow-md relative -top-3">
+              4
+            </div>
+            <div class="bg-white text-ink-950 p-4 rounded-2xl shadow-card border border-white/20 mt-3">
+              <div class="w-8 h-8 rounded-lg bg-accent-soft text-accent flex items-center justify-center mb-2">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/></svg>
+              </div>
+              <h4 class="font-bold text-sm leading-tight text-ink-950">Retirada</h4>
+              <p class="text-[11px] text-muted mt-1 leading-normal">Primeiro período mais a caução. Assina e sai.</p>
+            </div>
+          </div>
+
+          <!-- Etapa 5 (Cima) -->
+          <div class="absolute left-[88%] -top-40 w-52">
+            <div class="bg-white text-ink-950 p-4 rounded-2xl shadow-card border border-white/20 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-accent-soft text-accent flex items-center justify-center mb-2">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
+              <h4 class="font-bold text-sm leading-tight text-ink-950">Rodando</h4>
+              <p class="text-[11px] text-muted mt-1 leading-normal">Suporte 24h e manutenção seguem com você.</p>
+            </div>
+            <!-- Pino 5 na pista -->
+            <div class="w-8 h-8 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center mx-auto shadow-md relative top-2">
+              5
+            </div>
+          </div>
+
+          <!-- Ícone Moto na extremidade direita da estrada -->
+          <div class="absolute -right-3 -top-3 w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center shadow-lg">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg>
+          </div>
+        </div>
+
+        <!-- Versão Mobile (Vertical Progress) -->
+        <div class="block lg:hidden space-y-4">
+          <div class="flex items-start gap-4 bg-white text-ink-950 p-4 rounded-2xl shadow-md">
+            <div class="w-8 h-8 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center shrink-0">1</div>
+            <div>
+              <h4 class="font-bold text-sm">Você pede a simulação</h4>
+              <p class="text-xs text-muted mt-0.5">Escolhe plano e veículo e envia o formulário.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white text-ink-950 p-4 rounded-2xl shadow-md">
+            <div class="w-8 h-8 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center shrink-0">2</div>
+            <div>
+              <h4 class="font-bold text-sm">Consultor responde</h4>
+              <p class="text-xs text-muted mt-0.5">No WhatsApp, com o valor exato de cada período.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white text-ink-950 p-4 rounded-2xl shadow-md">
+            <div class="w-8 h-8 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center shrink-0">3</div>
+            <div>
+              <h4 class="font-bold text-sm">Cadastro aprovado</h4>
+              <p class="text-xs text-muted mt-0.5">No App e no Conquiste, sem consulta ao SPC e Serasa.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white text-ink-950 p-4 rounded-2xl shadow-md">
+            <div class="w-8 h-8 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center shrink-0">4</div>
+            <div>
+              <h4 class="font-bold text-sm">Retirada</h4>
+              <p class="text-xs text-muted mt-0.5">Primeiro período mais a caução. Assina e sai.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white text-ink-950 p-4 rounded-2xl shadow-md">
+            <div class="w-8 h-8 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center shrink-0">5</div>
+            <div>
+              <h4 class="font-bold text-sm">Rodando</h4>
+              <p class="text-xs text-muted mt-0.5">Suporte 24h e manutenção seguem com você.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA Inferior -->
+      <div class="mt-16 lg:mt-32 flex flex-wrap items-center gap-4">
+        <a href="#simulacao" class="bg-accent hover:bg-accent-hover text-white text-base font-bold px-7 py-3 rounded-control transition-all shadow-md active:scale-95">
+          Começar pela simulação
+        </a>
+        <span class="text-xs sm:text-sm text-gray-400">Leva menos de um minuto.</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. POR QUE RODAR COM A LOK MOB (MOSAICO / BENTO GRID)
+  ========================================================================== -->
+  <section class="bg-paper text-ink-950 py-20 lg:py-28 border-t border-border-light">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+      
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink-950 leading-tight mb-12 tracking-tight">
+        Por que rodar com a Lok Mob.
+      </h2>
+
+      <!-- Bento Grid de 3 Colunas -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- Bloco Esquerdo (8 Colunas) -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+          
+          <!-- Card Fotográfico Superior: Frota Própria -->
+          <div class="relative rounded-card overflow-hidden h-[260px] sm:h-[300px] border border-border-light shadow-card group">
+            <img 
+              src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1000&auto=format&fit=crop" 
+              alt="Frota própria Lok Mob" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+            
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent text-white text-xs font-bold mb-3 shadow">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Frota própria
+              </span>
+              <h3 class="text-xl sm:text-2xl font-bold text-white leading-snug max-w-lg">
+                Motos e carros da nossa própria frota, revisados antes de chegar em você.
+              </h3>
+            </div>
+          </div>
+
+          <!-- Linha Inferior com 2 Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 flex-1">
+            
+            <!-- Card 1: Duração do Contrato com Barras Comparativas -->
+            <div class="bg-white rounded-card p-6 shadow-card border border-border-light/80 flex flex-col justify-between">
+              <div>
+                <span class="text-xs text-muted block mb-1">Você escolhe o contrato</span>
+                <h4 class="font-extrabold text-lg text-ink-950 mb-5 leading-snug">
+                  De um dia até a moto ser sua.
+                </h4>
+
+                <!-- Barras visuais de duração -->
+                <div class="space-y-2.5 text-xs">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-ink-950 w-16">Diária</span>
+                    <div class="flex-1 ml-3 bg-gray-100 rounded-full h-6 flex items-center px-3">
+                      <span class="bg-ink-950 text-white rounded-full px-2 py-0.5 text-[10px] font-semibold">1 dia</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-ink-950 w-16">App</span>
+                    <div class="flex-1 ml-3 bg-gray-100 rounded-full h-6 flex items-center px-3">
+                      <span class="bg-ink-950 text-white rounded-full px-3 py-0.5 text-[10px] font-semibold">1 semana</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-ink-950 w-16">Flex</span>
+                    <div class="flex-1 ml-3 bg-gray-100 rounded-full h-6 flex items-center px-3">
+                      <span class="bg-ink-950 text-white rounded-full px-4 py-0.5 text-[10px] font-semibold">1 mês</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-ink-950 w-16">Conquiste</span>
+                    <div class="flex-1 ml-3 bg-accent rounded-full h-6 flex items-center px-3 text-white text-[10px] font-bold">
+                      36 meses · a moto é sua
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Laranja Intenso - Cadastro sem SPC e Serasa -->
+            <div class="bg-accent text-white rounded-card p-6 shadow-card flex flex-col justify-between">
+              <div>
+                <!-- Chips de SPC / Serasa Riscados -->
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                  <span class="px-2.5 py-1 rounded-full bg-black/30 text-white/80 text-[11px] line-through font-semibold">
+                    Consulta SPC
+                  </span>
+                  <span class="px-2.5 py-1 rounded-full bg-black/30 text-white/80 text-[11px] line-through font-semibold">
+                    Consulta Serasa
+                  </span>
+                </div>
+
+                <!-- Selo Análise Lok Mob -->
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-accent text-xs font-bold mb-4">
+                  <svg class="w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  Análise Lok Mob
+                </div>
+
+                <h4 class="text-xl sm:text-2xl font-extrabold leading-tight mb-2">
+                  Cadastro sem consulta ao SPC e Serasa
+                </h4>
+                <p class="text-xs sm:text-sm text-white/90 leading-relaxed">
+                  No Lok Mob App e no Lok Mob Conquiste. A aprovação é feita pela nossa análise.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Bloco Direito (4 Colunas): Consultores com Nome e Suporte 24h -->
+        <div class="lg:col-span-4 bg-ink-900 text-white rounded-card p-6 sm:p-7 shadow-card-dark flex flex-col justify-between border border-border-dark">
+          <div>
+            <span class="text-xs text-muted block mb-1">Consultor com nome</span>
+            <h3 class="text-2xl font-bold mb-6 tracking-tight">Nada de fila de robô.</h3>
+
+            <!-- Lista de Consultores -->
+            <div class="space-y-4 mb-8">
+              
+              <!-- Consultor 1: Lucas -->
+              <div class="flex items-center justify-between pb-3 border-b border-border-dark">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full border border-accent flex items-center justify-center font-bold text-accent">
+                    L
+                  </div>
+                  <div>
+                    <h5 class="font-bold text-sm">Lucas</h5>
+                    <span class="text-xs text-muted">Fortaleza-CE</span>
+                  </div>
+                </div>
+                <button onclick="startSimulationWithConsultant('Lucas', 'Fortaleza')" class="bg-accent hover:bg-accent-hover text-white text-xs font-bold px-3.5 py-1.5 rounded-lg transition-colors">
+                  Simular
+                </button>
+              </div>
+
+              <!-- Consultora 2: Naza -->
+              <div class="flex items-center justify-between pb-3 border-b border-border-dark">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full border border-accent flex items-center justify-center font-bold text-accent">
+                    N
+                  </div>
+                  <div>
+                    <h5 class="font-bold text-sm">Naza</h5>
+                    <span class="text-xs text-muted">Fortaleza-CE</span>
+                  </div>
+                </div>
+                <button onclick="startSimulationWithConsultant('Naza', 'Fortaleza')" class="bg-accent hover:bg-accent-hover text-white text-xs font-bold px-3.5 py-1.5 rounded-lg transition-colors">
+                  Simular
+                </button>
+              </div>
+
+              <!-- Consultora 3: Larissa -->
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full border border-accent flex items-center justify-center font-bold text-accent">
+                    L
+                  </div>
+                  <div>
+                    <h5 class="font-bold text-sm">Larissa</h5>
+                    <span class="text-xs text-muted">Sobral-CE</span>
+                  </div>
+                </div>
+                <button onclick="startSimulationWithConsultant('Larissa', 'Sobral')" class="bg-accent hover:bg-accent-hover text-white text-xs font-bold px-3.5 py-1.5 rounded-lg transition-colors">
+                  Simular
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bloco Suporte 24h & Cobertura -->
+          <div>
+            <div class="bg-ink-800 rounded-control p-3.5 flex items-center gap-3 border border-border-dark mb-4">
+              <div class="w-8 h-8 rounded-lg bg-accent-soft/10 text-accent flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+              </div>
+              <div>
+                <h5 class="font-bold text-xs">Suporte 24 horas</h5>
+                <p class="text-[11px] text-muted">Se algo acontecer na rua, tem quem atender a qualquer hora.</p>
+              </div>
+            </div>
+            <p class="text-[11px] text-muted text-center">Fortaleza, Região Metropolitana e Sobral.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. SIMULAÇÃO E FORMULÁRIO (DARK UI)
+  ========================================================================== -->
+  <section id="simulacao" class="bg-ink-900 bg-grid-subtle py-20 lg:py-28 border-t border-border-dark">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+        
+        <!-- Coluna Esquerda: Chamada e Imagem Institucional -->
+        <div class="lg:col-span-5 flex flex-col">
+          <h2 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight">
+            Peça sua simulação.
+          </h2>
+          <p class="text-base sm:text-lg text-gray-300 leading-relaxed mb-8">
+            Preencha em meio minuto e toque em enviar: o WhatsApp abre com tudo pronto, direto com o consultor da sua cidade.
+          </p>
+
+          <div class="relative rounded-card overflow-hidden shadow-card-dark border border-border-dark hidden sm:block">
+            <img 
+              src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=800&auto=format&fit=crop" 
+              alt="Veículos Lok Mob" 
+              class="w-full h-[260px] object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          </div>
+        </div>
+
+        <!-- Coluna Direita: Card do Formulário Branco -->
+        <div class="lg:col-span-7">
+          <div class="bg-white text-ink-950 rounded-card p-6 sm:p-9 shadow-card border border-border-light">
+            
+            <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+              
+              <!-- Linha 1: Nome + WhatsApp -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="form-name" class="block text-xs font-bold text-ink-950 mb-1.5">Seu nome</label>
+                  <input 
+                    type="text" 
+                    id="form-name" 
+                    required 
+                    placeholder="Como prefere ser chamado" 
+                    class="w-full bg-[#F7F7F6] border border-border-light rounded-control px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent focus:bg-white transition-all text-ink-950"
+                  />
+                </div>
+                <div>
+                  <label for="form-phone" class="block text-xs font-bold text-ink-950 mb-1.5">WhatsApp</label>
+                  <input 
+                    type="tel" 
+                    id="form-phone" 
+                    required 
+                    placeholder="(85) 9 0000-0000" 
+                    maxlength="16"
+                    oninput="formatPhoneInput(this)"
+                    class="w-full bg-[#F7F7F6] border border-border-light rounded-control px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent focus:bg-white transition-all text-ink-950"
+                  />
+                </div>
+              </div>
+
+              <!-- Linha 2: Cidade + Plano -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="form-city" class="block text-xs font-bold text-ink-950 mb-1.5">Cidade</label>
+                  <select 
+                    id="form-city" 
+                    required 
+                    class="w-full bg-[#F7F7F6] border border-border-light rounded-control px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent focus:bg-white transition-all text-ink-950"
+                  >
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="Fortaleza">Fortaleza</option>
+                    <option value="Região Metropolitana">Região Metropolitana (RMF)</option>
+                    <option value="Sobral">Sobral</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="form-plan" class="block text-xs font-bold text-ink-950 mb-1.5">Plano</label>
+                  <select 
+                    id="form-plan" 
+                    required 
+                    class="w-full bg-[#F7F7F6] border border-border-light rounded-control px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent focus:bg-white transition-all text-ink-950"
+                  >
+                    <option value="" disabled>Selecione</option>
+                    <option value="Conquiste" selected>Conquiste (36 meses - a moto é sua)</option>
+                    <option value="Flex">Flex (Mensal)</option>
+                    <option value="App">App (Semanal)</option>
+                    <option value="Diária">Diária</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Linha 3: Segmented Veículo -->
+              <div>
+                <label class="block text-xs font-bold text-ink-950 mb-2">Veículo</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="form-vehicle-group">
+                  <button type="button" onclick="selectFormVehicle('Bros 160')" class="form-veh-btn py-3 px-2 rounded-control text-xs sm:text-sm font-bold border border-ink-950 bg-ink-950 text-white transition-all">
+                    Bros 160
+                  </button>
+                  <button type="button" onclick="selectFormVehicle('Start 160')" class="form-veh-btn py-3 px-2 rounded-control text-xs sm:text-sm font-semibold border border-border-light bg-[#F7F7F6] text-ink-950 hover:bg-gray-100 transition-all">
+                    Start 160
+                  </button>
+                  <button type="button" onclick="selectFormVehicle('Carro')" class="form-veh-btn py-3 px-2 rounded-control text-xs sm:text-sm font-semibold border border-border-light bg-[#F7F7F6] text-ink-950 hover:bg-gray-100 transition-all">
+                    Carro
+                  </button>
+                  <button type="button" onclick="selectFormVehicle('Não sei')" class="form-veh-btn py-3 px-2 rounded-control text-xs sm:text-sm font-semibold border border-border-light bg-[#F7F7F6] text-ink-950 hover:bg-gray-100 transition-all">
+                    Não sei
+                  </button>
+                </div>
+              </div>
+
+              <!-- Botão de Envio WhatsApp -->
+              <div class="pt-2">
+                <button 
+                  type="submit" 
+                  class="w-full bg-accent hover:bg-accent-hover text-white text-base font-bold py-4 rounded-control transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2.5"
+                >
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                  <span>Enviar e abrir o WhatsApp</span>
+                </button>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       9. RODAPÉ / FOOTER (INK 950)
+  ========================================================================== -->
+  <footer class="bg-ink-950 text-muted py-14 border-t border-border-dark">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
+      
+      <!-- Marca + Assinatura -->
+      <div class="mb-6 flex items-center gap-2">
+        <div class="bg-accent text-white font-black text-xl px-2 py-0.5 rounded-lg tracking-tight">LK</div>
+        <div class="flex flex-col">
+          <span class="text-white font-bold text-lg leading-tight tracking-tight">Mob</span>
+          <span class="text-[9px] text-muted tracking-wider uppercase -mt-0.5">Acelere sua mobilidade</span>
+        </div>
+      </div>
+
+      <!-- Resumo de Serviços e Localidades -->
+      <p class="text-xs sm:text-sm text-gray-400 mb-4 max-w-2xl leading-relaxed">
+        Lok Mob - aluguel de motos e carros: Diária, App, Flex e Conquiste. Fortaleza, Região Metropolitana e Sobral (CE).
+      </p>
+
+      <!-- Notas Legais e Copyright -->
+      <div class="text-[11px] sm:text-xs text-muted space-y-1">
+        <p>Valores e condições sujeitos a alteração sem aviso prévio. Liberação da moto mediante análise e aprovação de cadastro. Caução reembolsável conforme contrato.</p>
+        <p>© 2026 Lok Mob. Todos os direitos reservados.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       10. SCRIPTS DE INTERATIVIDADE & ESTADO DA LANDING PAGE
+  ========================================================================== -->
+  <script>
+    // Base de Dados de Planos e Veículos extraída e calibrada com o Design System
+    const planData = {
+      conquiste: {
+        title: "Conquiste",
+        description: "Pra quem quer alugar pensando em ficar com a moto",
+        bannerText: "No último boleto, a moto é transferida para o seu nome.",
+        showBanner: true,
+        vehicles: {
+          bros: {
+            name: "Honda Bros 160",
+            price: "R$ 390",
+            unit: "/semana*",
+            contract: "36 meses",
+            deposit: "R$ 800",
+            mileage: "133 km por dia",
+            overkm: "R$ 0,25",
+            credit: "Sem consulta ao SPC e Serasa",
+            reqs: "Maior de 18 anos, CNH válida"
+          },
+          start: {
+            name: "Honda Start 160",
+            price: "R$ 340",
+            unit: "/semana*",
+            contract: "36 meses",
+            deposit: "R$ 800",
+            mileage: "133 km por dia",
+            overkm: "R$ 0,25",
+            credit: "Sem consulta ao SPC e Serasa",
+            reqs: "Maior de 18 anos, CNH válida"
+          },
+          carro: {
+            name: "Carro Compacto",
+            price: "Consulte",
+            unit: "lista de espera",
+            contract: "36 meses",
+            deposit: "R$ 1.500",
+            mileage: "150 km por dia",
+            overkm: "R$ 0,50",
+            credit: "Sem consulta ao SPC e Serasa",
+            reqs: "Maior de 21 anos, CNH B definitiva"
+          }
+        }
+      },
+      flex: {
+        title: "Flex",
+        description: "Pra quem precisa do veículo por mais tempo, com flexibilidade",
+        bannerText: "Contrato mensal renovável. Liberdade pra devolver quando quiser.",
+        showBanner: true,
+        vehicles: {
+          bros: {
+            name: "Honda Bros 160",
+            price: "R$ 320",
+            unit: "/semana*",
+            contract: "Mensal renovável",
+            deposit: "R$ 600",
+            mileage: "120 km por dia",
+            overkm: "R$ 0,25",
+            credit: "Análise facilitada",
+            reqs: "Maior de 18 anos, CNH válida"
+          },
+          start: {
+            name: "Honda Start 160",
+            price: "R$ 270",
+            unit: "/semana*",
+            contract: "Mensal renovável",
+            deposit: "R$ 500",
+            mileage: "120 km por dia",
+            overkm: "R$ 0,25",
+            credit: "Análise facilitada",
+            reqs: "Maior de 18 anos, CNH válida"
+          },
+          carro: {
+            name: "Carro Hatch Completo",
+            price: "R$ 650",
+            unit: "/semana*",
+            contract: "Mensal renovável",
+            deposit: "R$ 1.200",
+            mileage: "150 km por dia",
+            overkm: "R$ 0,50",
+            credit: "Análise facilitada",
+            reqs: "Maior de 21 anos, CNH B"
+          }
+        }
+      },
+      app: {
+        title: "App",
+        description: "Pra motorista de aplicativo e entregador rodar no lucro",
+        bannerText: "Manutenção rápida prioritária para você não ficar parado.",
+        showBanner: true,
+        vehicles: {
+          bros: {
+            name: "Honda Bros 160",
+            price: "R$ 290",
+            unit: "/semana*",
+            contract: "Semanal",
+            deposit: "R$ 500",
+            mileage: "Ilimitada / Franquia alta",
+            overkm: "Isento",
+            credit: "Sem consulta ao SPC e Serasa",
+            reqs: "CNH com EAR e app ativo"
+          },
+          start: {
+            name: "Honda Start 160",
+            price: "R$ 250",
+            unit: "/semana*",
+            contract: "Semanal",
+            deposit: "R$ 450",
+            mileage: "Ilimitada / Franquia alta",
+            overkm: "Isento",
+            credit: "Sem consulta ao SPC e Serasa",
+            reqs: "CNH com EAR e app ativo"
+          },
+          carro: {
+            name: "Carro Uber/99",
+            price: "R$ 580",
+            unit: "/semana*",
+            contract: "Semanal",
+            deposit: "R$ 1.000",
+            mileage: "175 km por dia",
+            overkm: "R$ 0,40",
+            credit: "Sem consulta ao SPC e Serasa",
+            reqs: "CNH B com EAR"
+          }
+        }
+      },
+      diaria: {
+        title: "Diária",
+        description: "Pra quem precisa resolver compromissos por poucos dias",
+        bannerText: "Retire com tanque cheio e rode tranquilo.",
+        showBanner: false,
+        vehicles: {
+          bros: {
+            name: "Honda Bros 160",
+            price: "R$ 65",
+            unit: "/dia*",
+            contract: "A partir de 1 diária",
+            deposit: "R$ 300",
+            mileage: "100 km por dia",
+            overkm: "R$ 0,30",
+            credit: "Aprovação instantânea",
+            reqs: "Maior de 18 anos, CNH válida"
+          },
+          start: {
+            name: "Honda Start 160",
+            price: "R$ 50",
+            unit: "/dia*",
+            contract: "A partir de 1 diária",
+            deposit: "R$ 250",
+            mileage: "100 km por dia",
+            overkm: "R$ 0,30",
+            credit: "Aprovação instantânea",
+            reqs: "Maior de 18 anos, CNH válida"
+          },
+          carro: {
+            name: "Carro Diária",
+            price: "R$ 130",
+            unit: "/dia*",
+            contract: "A partir de 1 diária",
+            deposit: "R$ 600",
+            mileage: "150 km por dia",
+            overkm: "R$ 0,55",
+            credit: "Aprovação instantânea",
+            reqs: "Maior de 21 anos, CNH B"
+          }
+        }
+      }
+    };
+
+    // Estado do comparador
+    let currentPlan = 'conquiste';
+    let currentVehicle = 'bros';
+
+    // Troca de Aba de Plano
+    function switchPlanTab(planKey) {
+      currentPlan = planKey;
+      
+      // Atualiza estilo das abas
+      ['diaria', 'app', 'flex', 'conquiste'].forEach(key => {
+        const tab = document.getElementById(`tab-${key}`);
+        if (key === planKey) {
+          tab.className = "py-2.5 px-2 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-white text-ink-950 shadow-sm";
+        } else {
+          tab.className = "py-2.5 px-2 text-xs sm:text-sm font-semibold rounded-xl transition-all text-muted hover:text-ink-950";
+        }
+      });
+
+      renderComparator();
+    }
+
+    // Troca de Veículo no Comparador
+    function switchVehicle(vehKey) {
+      currentVehicle = vehKey;
+      
+      // Atualiza botões
+      ['start', 'bros', 'carro'].forEach(key => {
+        const btn = document.getElementById(`veh-${key}`);
+        if (key === vehKey) {
+          btn.className = "border-2 border-ink-950 p-2.5 sm:p-3 rounded-2xl flex items-center gap-2 sm:gap-3 text-left transition-all bg-black/5";
+        } else {
+          btn.className = "border-2 border-border-light p-2.5 sm:p-3 rounded-2xl flex items-center gap-2 sm:gap-3 text-left transition-all hover:border-ink-950";
+        }
+      });
+
+      renderComparator();
+    }
+
+    // Atualiza a interface do card comparador com base no estado
+    function renderComparator() {
+      const plan = planData[currentPlan];
+      const veh = plan.vehicles[currentVehicle];
+
+      document.getElementById('plan-description').textContent = plan.description;
+      document.getElementById('plan-price').textContent = veh.price;
+      document.getElementById('plan-unit').textContent = veh.unit;
+      document.getElementById('plan-model-title').textContent = veh.name;
+
+      document.getElementById('spec-contract').textContent = veh.contract;
+      document.getElementById('spec-deposit').textContent = veh.deposit;
+      document.getElementById('spec-mileage').textContent = veh.mileage;
+      document.getElementById('spec-overkm').textContent = veh.overkm;
+      document.getElementById('spec-credit').textContent = veh.credit;
+      document.getElementById('spec-reqs').textContent = veh.reqs;
+
+      const banner = document.getElementById('conquiste-banner');
+      if (plan.showBanner) {
+        banner.style.display = 'block';
+        banner.textContent = plan.bannerText;
+      } else {
+        banner.style.display = 'none';
+      }
+
+      const vehNameFormatted = currentVehicle === 'bros' ? 'Bros 160' : currentVehicle === 'start' ? 'Start 160' : 'Carro';
+      document.getElementById('btn-comparator-text').textContent = `Simular ${plan.title} · ${vehNameFormatted}`;
+    }
+
+    // Preenche o formulário a partir da configuração do comparador
+    function populateFormFromComparator() {
+      const planTitle = planData[currentPlan].title;
+      const vehName = currentVehicle === 'bros' ? 'Bros 160' : currentVehicle === 'start' ? 'Start 160' : 'Carro';
+      
+      setFormPlanVehicle(planTitle, vehName);
+      
+      // Scroll suave até o formulário
+      document.getElementById('simulacao').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Define valores do formulário
+    let selectedFormVehicle = 'Bros 160';
+
+    function selectFormVehicle(vehName) {
+      selectedFormVehicle = vehName;
+      const buttons = document.querySelectorAll('.form-veh-btn');
+      buttons.forEach(btn => {
+        if (btn.textContent.trim() === vehName) {
+          btn.className = "form-veh-btn py-3 px-2 rounded-control text-xs sm:text-sm font-bold border border-ink-950 bg-ink-950 text-white transition-all";
+        } else {
+          btn.className = "form-veh-btn py-3 px-2 rounded-control text-xs sm:text-sm font-semibold border border-border-light bg-[#F7F7F6] text-ink-950 hover:bg-gray-100 transition-all";
+        }
+      });
+    }
+
+    function setFormPlanVehicle(planName, vehName) {
+      const planSelect = document.getElementById('form-plan');
+      for (let i = 0; i < planSelect.options.length; i++) {
+        if (planSelect.options[i].value === planName) {
+          planSelect.selectedIndex = i;
+          break;
+        }
+      }
+      selectFormVehicle(vehName);
+    }
+
+    // Ação acionada pelo card de consultores humanos
+    function startSimulationWithConsultant(consultantName, city) {
+      document.getElementById('form-city').value = city;
+      document.getElementById('simulacao').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('form-name').focus();
+    }
+
+    // Máscara brasileira de telefone (85) 9 9999-9999
+    function formatPhoneInput(input) {
+      let value = input.value.replace(/\D/g, "");
+      if (value.length > 11) value = value.substring(0, 11);
+      
+      if (value.length > 6) {
+        input.value = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7)}`;
+      } else if (value.length > 2) {
+        input.value = `(${value.substring(0, 2)}) ${value.substring(2)}`;
+      } else if (value.length > 0) {
+        input.value = `(${value}`;
+      }
+    }
+
+    // Submissão do Formulário para o WhatsApp da Lok Mob
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('form-name').value.trim();
+      const phone = document.getElementById('form-phone').value.trim();
+      const city = document.getElementById('form-city').value;
+      const plan = document.getElementById('form-plan').value;
+      const vehicle = selectedFormVehicle;
+
+      // Monta o texto limpo para o WhatsApp
+      const msg = `Olá! Gostaria de uma simulação da Lok Mob.%0A%0A` +
+                  `*Nome:* ${name}%0A` +
+                  `*WhatsApp:* ${phone}%0A` +
+                  `*Cidade:* ${city}%0A` +
+                  `*Plano:* ${plan}%0A` +
+                  `*Veículo de interesse:* ${vehicle}`;
+
+      // Redireciona para o WhatsApp da central Lok Mob (Fortaleza/Sobral)
+      const whatsappUrl = `https://wa.me/5585999999999?text=${msg}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    // Inicialização da interface no estado Bros 160 + Conquiste
+    document.addEventListener('DOMContentLoaded', () => {
+      renderComparator();
+    });
+  </script>
+</body>
+</html>
