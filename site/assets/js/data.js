@@ -47,7 +47,7 @@ window.LM_DATA = {
         },
         carro: {
           price: { fortaleza: 200, sobral: 200 },
-          contract: 'Mínimo de 3 diárias', deposit: 'R$ 1.500', mileage: '150 km por dia',
+          contract: 'Mínimo de 3 diárias', deposit: 'R$ 1500', mileage: '150 km por dia',
           overkm: 'R$ 0,75', credit: 'Análise rápida, sem consulta SPC e Serasa', reqs: 'Maior de 21 anos, CNH B'
         }
       }
@@ -73,7 +73,7 @@ window.LM_DATA = {
         },
         carro: {
           price: { fortaleza: 600, sobral: 680 },
-          contract: '90 dias de fidelidade', deposit: 'R$ 1.000', mileage: '178 km por dia',
+          contract: '90 dias de fidelidade', deposit: 'R$ 1000', mileage: '178 km por dia',
           overkm: 'R$ 0,75', credit: 'Sem consulta ao SPC e Serasa', reqs: 'CNH B com EAR'
         }
       }
@@ -93,13 +93,13 @@ window.LM_DATA = {
           overkm: 'R$ 0,25', credit: 'Sem consulta ao SPC e Serasa', reqs: 'Maior de 18 anos, CNH válida'
         },
         start: {
-          price: { fortaleza: 1.300, sobral: 1.400 },
+          price: { fortaleza: 1300, sobral: 1400 },
           contract: 'Adesão mínima de 1 mês', deposit: 'R$ 800', mileage: '150 km por dia',
           overkm: 'R$ 0,25', credit: 'Sem consulta ao SPC e Serasa', reqs: 'Maior de 18 anos, CNH válida'
         },
         carro: {
-          price: { fortaleza: 2.650, sobral: 2.650 },
-          contract: 'Adesão mínima de 1 mês', deposit: 'R$ 1.500', mileage: '150 km por dia',
+          price: { fortaleza: 2650, sobral: 2650 },
+          contract: 'Adesão mínima de 1 mês', deposit: 'R$ 1500', mileage: '150 km por dia',
           overkm: 'R$ 0,75', credit: 'Sem consulta ao SPC e Serasa', reqs: 'Maior de 21 anos, CNH B'
         }
       }
