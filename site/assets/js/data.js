@@ -128,16 +128,16 @@ window.LM_DATA = {
     }
   },
 
-  planOrder: ['diaria', 'app', 'flex', 'conquiste'],
+  planOrder: ['diaria', 'flex', 'app', 'conquiste'],
   vehicleOrder: ['start', 'bros', 'carro'],
 
   /* WhatsApp de cada consultor: DDI + DDD + número, só dígitos (ex.: '5585912345678').
      Enquanto estiver vazio, a mensagem vai para o número central (fallbackWhatsapp). */
   consultants: [
-    { id: 'lucas', name: 'Lucas', city: 'fortaleza', cityLabel: 'Fortaleza-CE', whatsapp: '' },
-    { id: 'larissa', name: 'Larissa', city: 'sobral', cityLabel: 'Sobral-CE', whatsapp: '' }
+    { id: 'lucas', name: 'Lucas', city: 'fortaleza', cityLabel: 'Fortaleza-CE', whatsapp: '558591524428' },
+    { id: 'larissa', name: 'Larissa', city: 'sobral', cityLabel: 'Sobral-CE', whatsapp: '558592732771' }
   ],
 
   /* Número central provisório. Trocar pelo número oficial da Lok Mob. */
-  fallbackWhatsapp: '5585999999999'
+  fallbackWhatsapp: '558591524428'
 };
