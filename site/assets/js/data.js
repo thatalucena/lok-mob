@@ -37,19 +37,19 @@ window.LM_DATA = {
       cityRules: { sobral: { deposit: 'R$ 800' } },
       vehicles: {
         bros: {
-          price: { fortaleza: 65, sobral: 100 },
-          contract: 'Mínimo de 3 diárias', deposit: 'R$ 300', mileage: '100 km por dia',
-          overkm: 'R$ 0,30', credit: 'Aprovação instantânea', reqs: 'Maior de 18 anos, CNH válida'
+          price: { fortaleza: 80, sobral: 100 },
+          contract: 'Mínimo de 3 diárias', deposit: 'R$ 800', mileage: '150 km por dia',
+          overkm: 'R$ 0,25', credit: 'Análise rápida, sem consulta SPC e Serasa', reqs: 'Maior de 18 anos, CNH válida'
         },
         start: {
-          price: { fortaleza: 50, sobral: 80 },
-          contract: 'Mínimo de 3 diárias', deposit: 'R$ 250', mileage: '100 km por dia',
-          overkm: 'R$ 0,30', credit: 'Aprovação instantânea', reqs: 'Maior de 18 anos, CNH válida'
+          price: { fortaleza: 60, sobral: 80 },
+          contract: 'Mínimo de 3 diárias', deposit: 'R$ 800', mileage: '150 km por dia',
+          overkm: 'R$ 0,25', credit: 'Análise rápida, sem consulta SPC e Serasa', reqs: 'Maior de 18 anos, CNH válida'
         },
         carro: {
-          price: { fortaleza: 130, sobral: null },
-          contract: 'Mínimo de 3 diárias', deposit: 'R$ 600', mileage: '150 km por dia',
-          overkm: 'R$ 0,55', credit: 'Aprovação instantânea', reqs: 'Maior de 21 anos, CNH B'
+          price: { fortaleza: 200, sobral: 200 },
+          contract: 'Mínimo de 3 diárias', deposit: 'R$ 1.500', mileage: '150 km por dia',
+          overkm: 'R$ 0,75', credit: 'Análise rápida, sem consulta SPC e Serasa', reqs: 'Maior de 21 anos, CNH B'
         }
       }
     },
@@ -60,23 +60,23 @@ window.LM_DATA = {
       summary: 'Pra motorista de aplicativo e entregador',
       description: 'Pra motorista de aplicativo e entregador rodar no lucro',
       unit: '/semana',
-      banner: 'Manutenção rápida prioritária pra você não ficar parado.',
+      banner: 'Plano de Manutenção Garantido.',
       cityRules: { sobral: { deposit: 'R$ 500' } },
       vehicles: {
         bros: {
-          price: { fortaleza: 290, sobral: 300 },
-          contract: 'Semanal', deposit: 'R$ 500', mileage: 'Franquia alta',
-          overkm: 'Isento', credit: 'Sem consulta ao SPC e Serasa', reqs: 'CNH com EAR e app ativo'
+          price: { fortaleza: 280, sobral: 300 },
+          contract: '90 dias de fidelidade', deposit: 'R$ 500', mileage: '142km/dia',
+          overkm: 'R$ 0,25', credit: 'Sem consulta ao SPC e Serasa', reqs: 'CNH com EAR e app ativo'
         },
         start: {
           price: { fortaleza: 250, sobral: 270 },
-          contract: 'Semanal', deposit: 'R$ 450', mileage: 'Franquia alta',
-          overkm: 'Isento', credit: 'Sem consulta ao SPC e Serasa', reqs: 'CNH com EAR e app ativo'
+          contract: '90 dias de fidelidade', deposit: 'R$ 500', mileage: '142km/dia',
+          overkm: 'R$ 0,25', credit: 'Sem consulta ao SPC e Serasa', reqs: 'CNH com EAR e app ativo'
         },
         carro: {
-          price: { fortaleza: 580, sobral: null },
-          contract: 'Semanal', deposit: 'R$ 1.000', mileage: '175 km por dia',
-          overkm: 'R$ 0,40', credit: 'Sem consulta ao SPC e Serasa', reqs: 'CNH B com EAR'
+          price: { fortaleza: 600, sobral: 680 },
+          contract: '90 dias de fidelidade', deposit: 'R$ 1.000', mileage: '178 km por dia',
+          overkm: 'R$ 0,75', credit: 'Sem consulta ao SPC e Serasa', reqs: 'CNH B com EAR'
         }
       }
     },
@@ -86,24 +86,24 @@ window.LM_DATA = {
       fullName: 'Lok Mob Flex',
       summary: 'Pra quem precisa do veículo por mais tempo, com flexibilidade',
       description: 'Pra quem precisa do veículo por mais tempo, com flexibilidade',
-      unit: '/semana',
-      banner: 'Adesão mínima de 3 meses. Depois, o contrato renova mês a mês.',
+      unit: '/mês',
+      banner: 'Adesão mínima de 1 mês. Depois, o contrato renova mês a mês.',
       cityRules: { sobral: { unit: '/mês', deposit: 'R$ 800' } },
       vehicles: {
         bros: {
-          price: { fortaleza: 320, sobral: 1400 },
-          contract: 'Adesão mínima de 3 meses', deposit: 'R$ 600', mileage: '120 km por dia',
-          overkm: 'R$ 0,25', credit: 'Análise facilitada', reqs: 'Maior de 18 anos, CNH válida'
+          price: { fortaleza: 1.400, sobral: 1500 },
+          contract: 'Adesão mínima de 1 mês.', deposit: 'R$ 800', mileage: '150 km por dia',
+          overkm: 'R$ 0,25', credit: 'Sem consulta ao SPC e Serasa', reqs: 'Maior de 18 anos, CNH válida'
         },
         start: {
-          price: { fortaleza: 270, sobral: 1300 },
-          contract: 'Adesão mínima de 3 meses', deposit: 'R$ 500', mileage: '120 km por dia',
-          overkm: 'R$ 0,25', credit: 'Análise facilitada', reqs: 'Maior de 18 anos, CNH válida'
+          price: { fortaleza: 1.300, sobral: 1.400 },
+          contract: 'Adesão mínima de 1 mês', deposit: 'R$ 800', mileage: '150 km por dia',
+          overkm: 'R$ 0,25', credit: 'Sem consulta ao SPC e Serasa', reqs: 'Maior de 18 anos, CNH válida'
         },
         carro: {
-          price: { fortaleza: 650, sobral: null },
-          contract: 'Adesão mínima de 3 meses', deposit: 'R$ 1.200', mileage: '150 km por dia',
-          overkm: 'R$ 0,50', credit: 'Análise facilitada', reqs: 'Maior de 21 anos, CNH B'
+          price: { fortaleza: 2.650, sobral: 2.650 },
+          contract: 'Adesão mínima de 1 mês', deposit: 'R$ 1.500', mileage: '150 km por dia',
+          overkm: 'R$ 0,75', credit: 'Sem consulta ao SPC e Serasa', reqs: 'Maior de 21 anos, CNH B'
         }
       }
     },
@@ -114,7 +114,7 @@ window.LM_DATA = {
       summary: 'Pra quem quer alugar pensando em ficar com a moto. Só moto.',
       description: 'Pra quem quer alugar pensando em ficar com a moto',
       unit: '/semana',
-      banner: 'No último boleto, a moto é transferida para o seu nome.',
+      banner: 'No último boleto, a moto é transferida para o seu nome se não houver débitos.',
       /* Conquiste é só moto: sem carro neste plano. */
       vehicles: {
         bros: {
@@ -138,7 +138,6 @@ window.LM_DATA = {
      Enquanto estiver vazio, a mensagem vai para o número central (fallbackWhatsapp). */
   consultants: [
     { id: 'lucas', name: 'Lucas', city: 'fortaleza', cityLabel: 'Fortaleza-CE', whatsapp: '' },
-    { id: 'naza', name: 'Naza', city: 'fortaleza', cityLabel: 'Fortaleza-CE', whatsapp: '' },
     { id: 'larissa', name: 'Larissa', city: 'sobral', cityLabel: 'Sobral-CE', whatsapp: '' }
   ],
 
