@@ -60,7 +60,6 @@ window.LM_DATA = {
       description: 'Pra motorista de aplicativo e entregador rodar no lucro',
       unit: '/semana',
       banner: 'Plano de Manutenção Garantido.',
-      cityRules: { sobral: { deposit: 'R$ 500' } },
       vehicles: {
         bros: {
           price: { fortaleza: 280, sobral: 300 },
@@ -87,7 +86,6 @@ window.LM_DATA = {
       description: 'Pra quem precisa do veículo por mais tempo, com flexibilidade',
       unit: '/mês',
       banner: 'Adesão mínima de 1 mês. Depois, o contrato renova mês a mês.',
-      cityRules: { sobral: { unit: '/mês', deposit: 'R$ 800' } },
       vehicles: {
         bros: {
           price: { fortaleza: 1.400, sobral: 1500 },
