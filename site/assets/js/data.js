@@ -34,7 +34,6 @@ window.LM_DATA = {
       description: 'Pra quem precisa resolver compromissos por poucos dias',
       unit: '/dia',
       banner: 'Contrato mínimo de 3 diárias.',
-      cityRules: { sobral: { deposit: 'R$ 800' } },
       vehicles: {
         bros: {
           price: { fortaleza: 80, sobral: 100 },
