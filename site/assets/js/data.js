@@ -128,7 +128,7 @@ window.LM_DATA = {
     }
   },
 
-  planOrder: ['diaria', 'flex', 'app', 'conquiste'],
+  planOrder: ['diaria', 'app', 'flex', 'conquiste'],
   vehicleOrder: ['start', 'bros', 'carro'],
 
   /* WhatsApp de cada consultor: DDI + DDD + número, só dígitos (ex.: '5585912345678').
