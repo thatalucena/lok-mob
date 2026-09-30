@@ -88,7 +88,7 @@ window.LM_DATA = {
       banner: 'Adesão mínima de 1 mês. Depois, o contrato renova mês a mês.',
       vehicles: {
         bros: {
-          price: { fortaleza: 1.400, sobral: 1500 },
+          price: { fortaleza: 1400, sobral: 1500 },
           contract: 'Adesão mínima de 1 mês.', deposit: 'R$ 800', mileage: '150 km por dia',
           overkm: 'R$ 0,25', credit: 'Sem consulta ao SPC e Serasa', reqs: 'Maior de 18 anos, CNH válida'
         },
